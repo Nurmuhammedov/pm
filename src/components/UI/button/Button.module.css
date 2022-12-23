@@ -1,12 +1,12 @@
 .btn {
-    font-family: 'SourceSansPro-SemiBold', sans-serif;
+    font-family: "SourceSansPro-SemiBold", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 1.8rem;
-    line-height: 2.0rem;
-    color: #0173FF;
+    line-height: 2rem;
+    color: #0173ff;
     padding: 1.2rem 2.4rem;
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 6.4rem;
     border: none;
     cursor: pointer;

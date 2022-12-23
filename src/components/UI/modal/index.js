@@ -1,21 +1,21 @@
-import React, {Component} from 'react';
-import {createPortal} from "react-dom";
-import style from './style.js';
+import React, { Component } from "react";
+import { createPortal } from "react-dom";
+import style from "./style.js";
 
 export default class Modal extends Component {
     constructor(props) {
         super(props);
-        let effect = props.effect || 'fadeInDown';
+        let effect = props.effect || "fadeInDown";
         this.setSize(effect);
         this.state = {
             visible: props.visible,
-            style: style[effect]
-        }
+            style: style[effect],
+        };
     }
 
-    UNSAFE_componentWillReceiveProps({visible, effect = 'fadeInDown'}) {
+    UNSAFE_componentWillReceiveProps({ visible, effect = "fadeInDown" }) {
         this.setState({
-            visible: visible
+            visible: visible,
         });
         this.setSize(effect);
         this.setStyles(effect);
@@ -25,59 +25,78 @@ export default class Modal extends Component {
         if (this.props && this.props.styles) {
             style[effect].panel = {
                 ...style[effect].panel,
-                ...this.props.styles
+                ...this.props.styles,
             };
         }
     }
 
     setSize(effect) {
         if (this.props && this.props.width) {
-            if (this.props.width.charAt(this.props.width.length - 1) === '%') {
+            if (this.props.width.charAt(this.props.width.length - 1) === "%") {
                 // Use Percentage
                 const width = this.props.width.slice(0, -1);
-                style[effect].panel.width = width + '%';
-
-            } else if (this.props.width.charAt(this.props.width.length - 1) === 'x') {
+                style[effect].panel.width = width + "%";
+            } else if (
+                this.props.width.charAt(this.props.width.length - 1) === "x"
+            ) {
                 // Use Pixels
                 const width = this.props.width.slice(0, -2);
-                style[effect].panel.width = width + 'px';
-
+                style[effect].panel.width = width + "px";
             } else {
                 // Defaults
-                style[effect].panel.width = this.props.width + 'px';
+                style[effect].panel.width = this.props.width + "px";
             }
         }
         if (this.props && this.props.height) {
-            if (this.props.height.charAt(this.props.height.length - 1) === '%') {
+            if (
+                this.props.height.charAt(this.props.height.length - 1) === "%"
+            ) {
                 // Use Percentage
                 const height = this.props.height.slice(0, -1);
-                style[effect].panel.height = height + 'vh';
-
-            } else if (this.props.height.charAt(this.props.height.length - 1) === 'x') {
+                style[effect].panel.height = height + "vh";
+            } else if (
+                this.props.height.charAt(this.props.height.length - 1) === "x"
+            ) {
                 // Use Pixels
                 const height = this.props.height.slice(0, -2);
-                style[effect].panel.height = height + 'px';
-
+                style[effect].panel.height = height + "px";
             } else {
                 // Defaults
-                style[effect].panel.height = this.props.height + 'px';
+                style[effect].panel.height = this.props.height + "px";
             }
         }
     }
 
     render() {
-        return (
-            createPortal(
-                <div>
-                    <div style={this.state.visible ? this.state.style.container : this.state.style.containerHidden}>
-                        <div style={this.state.visible ? {...this.state.style.panel} : this.state.style.panelHidden}>
-                            {this.props.children}
-                        </div>
-                        <div style={this.state.visible ? this.state.style.mask : this.state.style.maskHidden}
-                             onClick={this.props.onClose ? this.props.onClose : null}/>
+        return createPortal(
+            <div>
+                <div
+                    style={
+                        this.state.visible
+                            ? this.state.style.container
+                            : this.state.style.containerHidden
+                    }
+                >
+                    <div
+                        style={
+                            this.state.visible
+                                ? { ...this.state.style.panel }
+                                : this.state.style.panelHidden
+                        }
+                    >
+                        {this.props.children}
                     </div>
-                </div>, document.getElementById("modal")
-            )
+                    <div
+                        style={
+                            this.state.visible
+                                ? this.state.style.mask
+                                : this.state.style.maskHidden
+                        }
+                        onClick={this.props.onClose ? this.props.onClose : null}
+                    />
+                </div>
+            </div>,
+            document.getElementById("modal")
         );
     }
 }

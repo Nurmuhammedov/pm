@@ -5,6 +5,11 @@
     font-family: "Poppins";
 }
 
+@font-face {
+    src: url("assets/fonts/Poppins/Poppins-Medium.ttf");
+    font-family: "Poppins-Medium";
+}
+
 /* Source Sans Pro */
 
 @font-face {

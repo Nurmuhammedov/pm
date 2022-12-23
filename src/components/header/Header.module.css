@@ -12,5 +12,53 @@
 }
 
 .header-inner > div:first-child {
-    padding: 1rem 0;
+    padding: 0.7rem;
+}
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu li a {
+    font-family: "SourceSansPro", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    color: #14161a;
+    padding: 0.8rem 1.6rem;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.menu li a::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: calc(100% - 2rem);
+    height: .2rem;
+    bottom: .2rem;
+    left: 1rem;
+    transform: scaleX(0);
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+
+.menu li a:hover::before {
+    transform: scaleX(1);
+}
+
+.coloredLogo::before {
+    background-color: rgba(20, 22, 26, 0.7) !important;
 }
