@@ -1,9 +1,14 @@
-function App() {
-  return (
-    <div>
+import React, {createContext} from "react";
+import Header from "./components/header/Header";
 
-    </div>
-  );
+export const ctx = createContext(null)
+
+function App() {
+    return (
+        <ctx.Provider value={null}>
+            <Header coloredLogo={true}/>
+        </ctx.Provider>
+    );
 }
 
 export default App;

@@ -1,0 +1,58 @@
+/* Poppins */
+
+@font-face {
+    src: url("assets/fonts/Poppins/Poppins-Regular.ttf");
+    font-family: "Poppins";
+}
+
+/* Source Sans Pro */
+
+@font-face {
+    src: url("assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf");
+    font-family: "SourceSansPro";
+}
+
+@font-face {
+    src: url("assets/fonts/SourceSansPro/SourceSansPro-SemiBold.ttf");
+    font-family: "SourceSansPro-SemiBold";
+}
+
+*,
+*:after,
+*:before {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    background-color: #DFDFDF;
+    width: .6rem;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 1.2rem;
+    background-color: rgba(20, 22, 26, 0.2);
+}
+
+*::-webkit-scrollbar-button {
+    display: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width: 124rem;
+    margin: 0 auto;
+}

@@ -1,0 +1,16 @@
+.header-inner {
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-inner > div {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+}
+
+.header-inner > div:first-child {
+    padding: 1rem 0;
+}
