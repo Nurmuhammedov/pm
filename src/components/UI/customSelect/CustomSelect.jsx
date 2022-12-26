@@ -53,6 +53,7 @@ const CustomSelect = ({
                     fontSize: fontSize,
                     lineHeight: lineHeight,
                     cursor: "pointer",
+                    maxWidth: '30rem'
                 }),
                 valueContainer: (base) => ({
                     ...base,
@@ -68,6 +69,7 @@ const CustomSelect = ({
                     ...base,
                     margin: 0,
                     padding: 0,
+                    color: color,
                 }),
                 indicatorsContainer: (base) => ({
                     ...base,

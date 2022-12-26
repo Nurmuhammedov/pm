@@ -1,5 +1,7 @@
-import React, {createContext} from "react";
-import Header from "./components/header/Header";
+import React, {createContext, useEffect} from "react";
+import Footer from "./components/footer/Footer";
+import Home from "./pages/home/Home";
+
 
 export const ctx = createContext(null);
 
@@ -21,17 +23,10 @@ const dropdownOptions = [
 function App() {
     return (
         <ctx.Provider value={null}>
-            <div style={{
-                height: "100vh",
-                // background: "linear-gradient(117.04deg, #0139FF 32.51%, #AD00FF 81.63%)",
-                background: "silver",
-            }}>
-                <Header
-                    dropdownOptions={dropdownOptions}
-                    selectOptions={selectOptions}
-                    coloredLogo={true}
-                />
-            </div>
+            <main>
+                <Home dropdownOptions={dropdownOptions} selectOptions={selectOptions}/>
+            </main>
+            <Footer/>
         </ctx.Provider>
     );
 }

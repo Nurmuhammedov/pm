@@ -10,6 +10,11 @@
     font-family: "Poppins-Medium";
 }
 
+@font-face {
+    src: url("assets/fonts/Poppins/Poppins-Black.ttf");
+    font-family: "Poppins-Black";
+}
+
 /* Source Sans Pro */
 
 @font-face {
@@ -55,6 +60,14 @@ ul {
 
 a {
     text-decoration: none;
+    outline: none;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    background-color: #F6F7F8;
+    min-height: 100vh;
 }
 
 .container {

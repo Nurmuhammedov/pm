@@ -1,0 +1,39 @@
+.self {
+    overflow-x: hidden;
+}
+
+.self-inner {
+    background: linear-gradient(117.04deg, #0139FF 32.51%, #AD00FF 81.63%);
+    padding-bottom: 28rem;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    width: 160%;
+    transform: translateX(-18.75%);
+}
+
+.self-inner > div {
+    padding-top: 5rem;
+    padding-left: 6rem;
+}
+
+.self h1 {
+    font-family: "Poppins-Black", sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 4.8rem;
+    line-height: 110%;
+    color: #FFFFFF;
+    margin-bottom: 1.2rem;
+}
+
+.self p {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 44rem;
+    margin-bottom: 3.3rem;
+}
+
