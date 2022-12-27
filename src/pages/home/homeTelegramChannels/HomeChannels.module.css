@@ -82,7 +82,7 @@
     background-color: white;
 }
 
-.btn:hover [data-color] {
-    color: attr(data-color);
-}
+/*.btn:hover [data-color] {*/
+    /*color: attr(data-color);*/
+/*}*/
 
