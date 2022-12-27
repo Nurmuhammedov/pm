@@ -11,6 +11,11 @@
 }
 
 @font-face {
+    src: url("assets/fonts/Poppins/Poppins-Bold.ttf");
+    font-family: "Poppins-Bold";
+}
+
+@font-face {
     src: url("assets/fonts/Poppins/Poppins-Black.ttf");
     font-family: "Poppins-Black";
 }
@@ -25,6 +30,11 @@
 @font-face {
     src: url("assets/fonts/SourceSansPro/SourceSansPro-SemiBold.ttf");
     font-family: "SourceSansPro-SemiBold";
+}
+
+@font-face {
+    src: url("assets/fonts/SourceSansPro/SourceSansPro-Black.ttf");
+    font-family: "SourceSansPro-Black";
 }
 
 *,

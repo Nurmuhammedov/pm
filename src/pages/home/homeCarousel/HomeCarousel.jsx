@@ -14,10 +14,11 @@ import CardIcon1 from "../../../assets/icons/cardItemsIcons/CardIcon1";
 import CardIcon2 from "../../../assets/icons/cardItemsIcons/CardIcon2";
 import CardIcon3 from "../../../assets/icons/cardItemsIcons/CardIcon3";
 import "./HomeCarousel.css"
+import CounterUp from "../../../components/UI/countUp/CounterUp";
 
 const HomeCarousel = () => {
     const [swiper, setSwiper] = useState(null);
-    const [data, setData] = useState([{},{},{},{},{}]);
+    const [data, setData] = useState([{}, {}]);
 
     const nextSlide = () => {
         swiper.slideNext();
@@ -80,9 +81,9 @@ const HomeCarousel = () => {
                     }}
                 >
                     {
-                        data.map(()=>{
-                            return(
-                                <SwiperSlide>
+                        data.map((item, index) => {
+                            return (
+                                <SwiperSlide key={index}>
                                     <LazyLoadImage
                                         wrapperClassName={styles.slide}
                                         src={carouselImg}
@@ -93,6 +94,20 @@ const HomeCarousel = () => {
                             )
                         })
                     }
+                    <div className={styles.count}>
+                        <div>
+                            <CounterUp className={styles["count-up"]} end={2211} duration={2} suffix="+"/>
+                            <div className={styles["count-up__label"]}>O‘quvchilar</div>
+                        </div>
+                        <div>
+                            <CounterUp className={styles["count-up"]} end={150} duration={2} suffix="+"/>
+                            <div className={styles["count-up__label"]}>O‘qituvchilar</div>
+                        </div>
+                        <div>
+                            <CounterUp className={styles["count-up"]} end={76} duration={2} suffix="+"/>
+                            <div className={styles["count-up__label"]}>Fanlarimiz</div>
+                        </div>
+                    </div>
                 </Swiper>
                 <div className={styles.footer}>
                     <div>
@@ -106,7 +121,6 @@ const HomeCarousel = () => {
                         institutions in the world. We nurture leaders who can be competitive on the global stage."</p>
                 </div>
             </div>
-
         </section>
     );
 };
