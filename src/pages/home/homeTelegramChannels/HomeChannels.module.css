@@ -82,7 +82,15 @@
     background-color: white;
 }
 
+.btn .wrapper-inner div {
+    transition: all .1s ease-out;
+}
+
+.btn:hover .wrapper-inner div {
+    color: #233F37;
+}
+
 /*.btn:hover [data-color] {*/
-    /*color: attr(data-color);*/
+/*color: attr(data-color);*/
 /*}*/
 

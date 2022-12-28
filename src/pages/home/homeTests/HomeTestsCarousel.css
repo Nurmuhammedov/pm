@@ -1,0 +1,18 @@
+.home-tests__carousel {
+    max-width: calc(124rem + (100vw - 124rem) / 2);
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+.home-tests__carousel .swiper-wrapper {
+    height: 100% !important;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.home-tests__carousel .swiper-slide {
+    height: 100%;
+    flex-grow: 1;
+}
+

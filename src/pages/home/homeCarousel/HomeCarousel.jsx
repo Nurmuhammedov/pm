@@ -18,7 +18,7 @@ import CounterUp from "../../../components/UI/countUp/CounterUp";
 
 const HomeCarousel = () => {
     const [swiper, setSwiper] = useState(null);
-    const [data, setData] = useState([{}, {}]);
+    const [data, setData] = useState([{}, {},{}, {},{}, {},{}, {}]);
 
     const nextSlide = () => {
         swiper.slideNext();
@@ -73,7 +73,8 @@ const HomeCarousel = () => {
                     // loop={true}
                     grabCursor={true}
                     pagination={{
-                        dynamicBullets: true
+                        dynamicBullets: true,
+                        clickable: true
                     }}
                     modules={[Autoplay, Pagination]}
                     onSwiper={(s) => {
