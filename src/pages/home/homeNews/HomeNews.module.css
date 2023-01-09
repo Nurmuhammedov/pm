@@ -1,0 +1,6 @@
+.news-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2.4rem;
+    margin-bottom: 3rem;
+}
