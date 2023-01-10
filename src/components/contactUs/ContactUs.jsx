@@ -19,10 +19,14 @@ const ContactUs = () => {
 
                     </span>
                 </div>
-                <div className={styles["contact-us"]}>
-
-
+                <div>
+                    <div className={styles["contact-us"]}>
+                        <div className={styles["contact-us__title"]}>
+                            O‘zimiz aloqaga chiqamiz
+                        </div>
+                    </div>
                 </div>
+                <div className={styles.overlay}></div>
             </div>
         </section>
     );
