@@ -3,7 +3,7 @@ import styles from "./Header.module.css";
 import ColoredLogo from "../../assets/icons/coloredLogo/ColoredLogo";
 import Logo from "../../assets/icons/logo/Logo";
 import CustomSelect from "../UI/customSelect/CustomSelect";
-import {Link, useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import Select, {components} from "react-select";
 import Dropdown from "../../assets/icons/dropdown/Dropdown";
 import Button from "../UI/button/Button";

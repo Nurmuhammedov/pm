@@ -18,7 +18,6 @@ import CounterUp from "../../../components/UI/countUp/CounterUp";
 
 const HomeCarousel = () => {
     const [swiper, setSwiper] = useState(null);
-    const [data, setData] = useState([{}, {},{}, {},{}, {},{}, {}]);
 
     const nextSlide = () => {
         swiper.slideNext();
@@ -82,7 +81,7 @@ const HomeCarousel = () => {
                     }}
                 >
                     {
-                        data.map((item, index) => {
+                        [{}, {},{}, {},{}, {},{}, {}].map((item, index) => {
                             return (
                                 <SwiperSlide key={index}>
                                     <LazyLoadImage

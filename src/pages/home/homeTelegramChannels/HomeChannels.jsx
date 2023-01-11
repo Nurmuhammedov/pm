@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './HomeChannels.module.css'
-import RightArrow from "../../../assets/icons/arrows/RightArrow";
 
 const HomeChannels = () => {
     const [data, setData] = useState([
@@ -21,6 +20,27 @@ const HomeChannels = () => {
             color: "#3C255B",
         }
     ])
+
+    useEffect(() => {
+        setData([
+            {
+                backgroundColor: "#989CFF",
+                color: "#2B1755",
+            },
+            {
+                backgroundColor: "#DCD3E8",
+                color: "#644D83",
+            },
+            {
+                backgroundColor: "#6ECCAF",
+                color: "#233F37",
+            },
+            {
+                backgroundColor: "#644D83",
+                color: "#3C255B",
+            }
+        ])
+    }, [])
     return (
         <section className={`${styles.self} container`}>
             <h2>Bizning telegram kanallarimiz</h2>
@@ -44,7 +64,9 @@ const HomeChannels = () => {
                                 <button id="nextButtonRef" className={styles.btn}>
                                     <div className={styles["wrapper-right"]}>
                                         <div className={styles["wrapper-inner"]}>
-                                            <div data-color={data[index].color} className={styles["btn-label"]}>Batafsil</div>
+                                            <div data-color={data[index].color}
+                                                 className={styles["btn-label"]}>Batafsil
+                                            </div>
                                         </div>
                                     </div>
                                 </button>

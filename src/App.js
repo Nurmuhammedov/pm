@@ -1,4 +1,4 @@
-import React, {createContext, useEffect} from "react";
+import React, {createContext} from "react";
 import Footer from "./components/footer/Footer";
 import Home from "./pages/home/Home";
 
