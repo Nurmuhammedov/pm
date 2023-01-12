@@ -4,6 +4,11 @@ import InputMask from 'react-input-mask';
 import homeChannelsStyles from "../../pages/home/homeTelegramChannels/HomeChannels.module.css";
 import backgroundImage from "../../assets/images/carousel.jpg"
 import styles from "./ContactUs.module.css";
+import {customTrim} from "../../utils/utils";
+import FaceBook from "../../assets/icons/socialNetwoks/FaceBook";
+import Telegram from "../../assets/icons/socialNetwoks/Telegram";
+import YouTube from "../../assets/icons/socialNetwoks/YouTube";
+import Instagram from "../../assets/icons/socialNetwoks/Instagram";
 
 const ContactUs = () => {
     const {handleSubmit, register, reset, control, formState: {errors}} = useForm({
@@ -14,7 +19,6 @@ const ContactUs = () => {
         }
     });
 
-    const customTrim = (value) => value.trim()
 
     return <section style={{marginBottom: "10rem"}} className={`${homeChannelsStyles.self} container`}>
         <h2 style={{marginBottom: "3rem"}}>Biz bilan bog‘lanish</h2>
@@ -26,9 +30,24 @@ const ContactUs = () => {
         >
             <div className={styles.title}>
                 <h3>Savol va takliflaringiz bo‘lsa biz bilan bog‘laning</h3>
-                <span className={styles["social-networks"]}>
-
-                </span>
+                <div className={styles["social-networks"]}>
+                    <div>
+                        <span>
+                            <a href="https://www.google.com/" target="_blank" rel="noreferrer">
+                                <FaceBook/>
+                            </a>
+                            <a href="https://www.google.com/" target="_blank" rel="noreferrer">
+                                <Telegram/>
+                            </a>
+                            <a href="https://www.google.com/" target="_blank" rel="noreferrer">
+                                <YouTube/>
+                            </a>
+                            <a href="https://www.google.com/" target="_blank" rel="noreferrer">
+                                <Instagram/>
+                            </a>
+                        </span>
+                    </div>
+                </div>
             </div>
             <div>
                 <div className={styles["contact-us"]}>

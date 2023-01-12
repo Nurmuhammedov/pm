@@ -1,19 +1,24 @@
 import React from "react";
 import styles from "./ColoredLogo.module.css";
 
-const ColoredLogo = () => {
+const ColoredLogo = ({
+                         onClick = () => {
+                         }, ...rest
+                     }) => {
     return (
         <svg
+            {...rest}
             className={styles.self}
             viewBox="0 0 60 58"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
+            onClick={onClick}
         >
-            <rect width="60" height="58" fill="url(#pattern0)" />
+            <rect width="60" height="58" fill="url(#coloredLogo)"/>
             <defs>
                 <pattern
-                    id="pattern0"
+                    id="coloredLogo"
                     patternContentUnits="objectBoundingBox"
                     width="1"
                     height="1"

@@ -5,4 +5,76 @@
     margin-bottom: 3rem;
     padding: 2rem 2.5rem 3.2rem;
     min-height: 30rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+.logo {
+    display: flex;
+    gap: .6rem;
+    align-items: center;
+}
+
+.logo > span {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.social-networks {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+
+.social-networks > div {
+    display: flex;
+    gap: .8rem;
+}
+
+.social-networks a {
+    display: inline-block;
+    padding: 1rem;
+    background-color: #F5F5F5;
+    border-radius: 1.2rem;
+}
+
+.links h4 {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 3rem;
+    color: #000000;
+    margin-bottom: .7rem;
+}
+
+.links ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.links ul li a {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    color: rgba(0, 0, 0, 0.8);
+    transition: all .3s ease-out;
+}
+
+.links ul li a:hover {
+    margin-left: .5rem;
 }
