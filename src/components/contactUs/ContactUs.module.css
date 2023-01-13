@@ -95,13 +95,13 @@
 
 .contact-us__form > span {
     margin-top: .5rem;
-    display: block;
-    margin-left: 1.2rem;
+    display: inline-block;
     font-family: 'SourceSansPro', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 1.2rem;
     line-height: 1.5rem;
+    color: red;
 }
 
 .contact-us__form textarea {

@@ -10,7 +10,7 @@ const Auth = () => {
     // const [sectionId, setSectionId] = useState(1)
 
     useEffect(() => {
-        if (pathname === "/login") {
+        if (pathname === "/login" || pathname === "/register") {
             document.querySelector("html").style.overflow = "hidden"
             document.querySelector("body").style.marginRight = ".6rem"
         } else {
@@ -20,8 +20,9 @@ const Auth = () => {
     }, [pathname])
 
     return (
-        <Modal visible={pathname === "/login"} effect="fadeInRight">
+        <Modal visible={pathname === "/login" || pathname === "/register"} effect="fadeInRight">
             <Login/>
+
         </Modal>
     );
 };

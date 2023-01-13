@@ -78,16 +78,16 @@ const ContactUs = () => {
                             placeholder="Ismingiz kiriting"
                             style={errors?.firstName ? {borderColor: "red"} : null}
                         />
-                        {errors?.firstName?.type === "required" ? <span style={{color: "red"}}>
+                        {errors?.firstName?.type === "required" ? <span>
                                 Ushbu maydon to‘ldirilishi shart
                             </span> : null}
-                        {errors?.firstName?.type === "whiteSpace" ? <span style={{color: "red"}}>
+                        {errors?.firstName?.type === "whiteSpace" ? <span>
                                 Bosh joy tashlash mumkin emas
                             </span> : null}
-                        {errors?.firstName?.type === "minLength" ? <span style={{color: "red"}}>
+                        {errors?.firstName?.type === "minLength" ? <span>
                                 Ismingiz kamida 3 ta belgidan iborat bo‘lishi kerak
                             </span> : null}
-                        {errors?.firstName?.type === "maxLength" ? <span style={{color: "red"}}>
+                        {errors?.firstName?.type === "maxLength" ? <span>
                                 Ismingiz 50 ta belgidan oshmasligi kerak
                             </span> : null}
                         <Controller
@@ -124,7 +124,7 @@ const ContactUs = () => {
                             </InputMask>
                             }
                         />
-                        {errors?.phone ? <span style={{color: "red"}}>
+                        {errors?.phone ? <span>
                                {errors?.phone?.message}
                             </span> : null}
                         <textarea
@@ -140,16 +140,16 @@ const ContactUs = () => {
                             placeholder="Murojaatingiz izohi"
                             style={errors?.comment ? {borderColor: "red"} : null}
                         />
-                        {errors?.comment?.type === "required" ? <span style={{color: "red"}}>
+                        {errors?.comment?.type === "required" ? <span>
                                 Ushbu maydon to‘ldirilishi shart
                             </span> : null}
-                        {errors?.comment?.type === "whiteSpace" ? <span style={{color: "red"}}>
+                        {errors?.comment?.type === "whiteSpace" ? <span>
                                 Bosh joy tashlash mumkin emas
                             </span> : null}
-                        {errors?.comment?.type === "minLength" ? <span style={{color: "red"}}>
+                        {errors?.comment?.type === "minLength" ? <span>
                                 Izoh kamida 5 ta belgidan iborat bo‘lishi kerak
                             </span> : null}
-                        {errors?.comment?.type === "maxLength" ? <span style={{color: "red"}}>
+                        {errors?.comment?.type === "maxLength" ? <span>
                                 Izoh 3000 ta belgidan oshmasligi kerak
                             </span> : null}
                         <button type="submit">Men bilan aloqaga chiqing</button>
