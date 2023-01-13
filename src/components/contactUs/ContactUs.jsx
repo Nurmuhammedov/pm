@@ -16,7 +16,8 @@ const ContactUs = () => {
             firstName: "",
             phone: "",
             comment: ""
-        }
+        },
+        mode: "onTouched"
     });
 
 
@@ -115,12 +116,13 @@ const ContactUs = () => {
                                         <input
                                             {...inputProps}
                                             ref={ref}
-                                            type="text"
+                                            type="tel"
                                             style={errors?.phone ? {borderColor: "red"} : null}
                                         />
                                     )
                                 }
-                            </InputMask>}
+                            </InputMask>
+                            }
                         />
                         {errors?.phone ? <span style={{color: "red"}}>
                                {errors?.phone?.message}

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { createPortal } from "react-dom";
+import React, {Component} from "react";
+import {createPortal} from "react-dom";
 import style from "./style.js";
 
 export default class Modal extends Component {
@@ -13,7 +13,7 @@ export default class Modal extends Component {
         };
     }
 
-    UNSAFE_componentWillReceiveProps({ visible, effect = "fadeInDown" }) {
+    UNSAFE_componentWillReceiveProps({visible, effect = "fadeInDown"}) {
         this.setState({
             visible: visible,
         });
@@ -80,7 +80,7 @@ export default class Modal extends Component {
                     <div
                         style={
                             this.state.visible
-                                ? { ...this.state.style.panel }
+                                ? {...this.state.style.panel}
                                 : this.state.style.panelHidden
                         }
                     >
@@ -92,7 +92,7 @@ export default class Modal extends Component {
                                 ? this.state.style.mask
                                 : this.state.style.maskHidden
                         }
-                        onClick={this.props.onClose ? this.props.onClose : null}
+                        onClick={this.props.onClick}
                     />
                 </div>
             </div>,

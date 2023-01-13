@@ -1,6 +1,7 @@
 import React, {createContext} from "react";
 import Footer from "./components/footer/Footer";
 import Home from "./pages/home/Home";
+import {Route, Routes} from "react-router-dom";
 
 
 export const ctx = createContext(null);
@@ -24,7 +25,9 @@ function App() {
     return (
         <ctx.Provider value={null}>
             <main>
-                <Home dropdownOptions={dropdownOptions} selectOptions={selectOptions}/>
+                <Routes>
+                    <Route path="*" element={<Home dropdownOptions={dropdownOptions} selectOptions={selectOptions}/>} />
+                </Routes>
             </main>
             <Footer/>
         </ctx.Provider>

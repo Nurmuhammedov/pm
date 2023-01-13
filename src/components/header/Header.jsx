@@ -177,14 +177,18 @@ const Header = (
                     </ul>
                 </nav>
                 <div>
-                    <Button
-                        backgroundColor={!coloredLogo ? "#FFFFFF" : null}
-                        color={!coloredLogo ? "#0173FF" : "#415572"}
-                        fontFamily={!coloredLogo ? 'SourceSansPro-SemiBold", sans-serif' : 'Poppins-Medium", sans-serif'}
-                        fontSize="1.8rem"
-                        lineHeight="2rem"
-                        fontWeight={!coloredLogo ? "600" : "500"}
-                    >Login</Button>
+                    <Link to="/login">
+                        <Button
+                            backgroundColor={!coloredLogo ? "#FFFFFF" : null}
+                            color={!coloredLogo ? "#0173FF" : "#415572"}
+                            fontFamily={!coloredLogo ? 'SourceSansPro-SemiBold", sans-serif' : 'Poppins-Medium", sans-serif'}
+                            fontSize="1.8rem"
+                            lineHeight="2rem"
+                            fontWeight={!coloredLogo ? "600" : "500"}
+                        >
+                            Login
+                        </Button>
+                    </Link>
                     <Link
                         to="/profile"
                         style={pathname === "/profile" ? {backgroundColor: "#0173FF"} : !coloredLogo ? {backgroundColor: "white"} : null}
