@@ -1,15 +1,16 @@
-import React, {useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import styles from "./Login.module.css";
 import {Controller, useForm} from "react-hook-form";
 import InputMask from "react-input-mask";
 import {customTrim} from "../../utils/utils";
 import LoginIcon from "../../assets/icons/loginIcons/Login";
 import PasswordIcon from "../../assets/icons/loginIcons/Password";
-import {Link, useNavigate} from "react-router-dom";
 import Eye from "../../assets/icons/loginIcons/Eye";
+import axios from "../../axios";
+import {ctx} from "../../App";
 
-const Login = () => {
-    const navigate = useNavigate();
+const Login = ({handlePage}) => {
+    const {handleAlert, handleAuth, handleAuthModal} = useContext(ctx)
     const [isPasswordInputTypeText, setIsPasswordInputTypeText] = useState(false);
     const {
         handleSubmit,
@@ -20,49 +21,59 @@ const Login = () => {
         formState: {errors},
     } = useForm({
         defaultValues: {
-            login: "",
+            phone: "",
         },
         mode: "onSubmit",
     });
 
-    const handleLoginInputKeyDown = (e) => {
-        if (e.key === "Enter") {
+    useEffect(() => {
+        setFocus("phone")
+    }, [])
+    const handleLoginInputKeyDown = (e, value) => {
+        if (e.key === "Enter" && value.length === 17) {
             document.querySelector("[data-name='password']").focus();
         }
     };
-
     const handlePasswordInputKeyDown = (e) => {
         if (e.key === "Enter") {
             document.querySelector("[data-name='submit']").click();
-            document.querySelector("[data-name='login']").focus();
         }
     };
     const onSubmit = (data) => {
-        data.login = data.login.trim().split(" ").join("").slice(1, -1).toLowerCase()
+        data.phone = data.phone.trim().split(" ").join("").slice(1).toLowerCase()
         data.password = data.password.trim().toLowerCase()
-        let formData = new FormData();
-        formData.append("login", data.login.trim().split(" ").join("").slice(1, -1).toLowerCase());
-        formData.append("password", data.password.trim().toLowerCase());
-        console.log(data);
-        reset();
+        axios.post('/v1/login/', {...data}).then(r => {
+            handleAuth(r.data)
+            handleAuthModal(false)
+            reset()
+            handleAlert("success", "Tizimga muvaffaqiyatli kirdingiz!")
+        }).catch(error => {
+            if (error.response.status === 401) {
+                handleAuth()
+            }
+            reset()
+            handleAlert("error", "Telefon raqam yoki maxfiy so‘z xato!")
+        })
     };
 
     return (
         <section className={styles.self}>
             <h3>Tizimga kirish</h3>
             <p>
-                Tizimdan ro‘yhatdan o‘tmagan bo‘lsangiz <span
+                Tizimdan ro‘yhatdan o‘tmagan bo‘lsangiz <br/><span
                 style={{color: "#0173FF", cursor: "pointer"}}
-                onClick={() => navigate("/register")}
+                onClick={() => handlePage(1)}
             >
                     “Ro‘yatdan o‘tish”
-                </span>{" "}
-                tugmasini bosing
+                </span> tugmasini bosing
             </p>
-            <form>
+            <form
+                onSubmit={e => {
+                    e.preventDefault()
+                }}>
                 <Controller
                     control={control}
-                    name="login"
+                    name="phone"
                     rules={{
                         required: {
                             value: true,
@@ -89,35 +100,28 @@ const Login = () => {
                             {(inputProps) => (
                                 <div>
                                     <input
-                                        onKeyDown={(e) => {
-                                            if (e.key === "Enter" && value.length === 17) {
-                                                document.querySelector("[data-name='password']").focus();
-                                            } else {
-                                                document.querySelector("[data-name='login']").focus();
-
-                                            }
-                                        }}
+                                        onKeyDown={(e) => handleLoginInputKeyDown(e, value)}
                                         {...inputProps}
                                         type="text"
                                         data-name="login"
                                         ref={ref}
                                         autoComplete="on"
                                         style={
-                                            errors?.login
+                                            errors?.phone
                                                 ? {borderColor: "red"}
                                                 : null
                                         }
                                     />
-                                    <span onClick={() => setFocus("login")} className={styles.icon}>
+                                    <span onClick={() => setFocus("phone")} className={styles.icon}>
                                             <LoginIcon/>
                                         </span>
-                                    {errors?.login ? (
+                                    {errors?.phone ? (
                                         <span
                                             className={
                                                 styles["helper-text"]
                                             }
                                         >
-                                                {errors?.login?.message}
+                                                {errors?.phone?.message}
                                             </span>
                                     ) : null}
                                 </div>
@@ -125,7 +129,7 @@ const Login = () => {
                         </InputMask>
                     )}
                 />
-                <div className={styles["pwd-container"]} style={{marginTop: "3rem"}}>
+                <div className={styles["pwd-container"]} style={{marginTop: "2.5rem"}}>
                     <input
                         {...register("password", {
                             required: true,
@@ -140,7 +144,6 @@ const Login = () => {
                         })}
                         type={isPasswordInputTypeText ? "text" : "password"}
                         data-name="password"
-                        onBlur={() => setIsPasswordInputTypeText(false)}
                         autoComplete="on"
                         onKeyDown={handlePasswordInputKeyDown}
                         placeholder="Maxfiy so‘zni kiriting"
@@ -151,7 +154,9 @@ const Login = () => {
                     </span>
                     <span
                         className={styles["eye-icon"]}
-                        onClick={() => setIsPasswordInputTypeText(p => !p)}
+                        onClick={() => {
+                            setIsPasswordInputTypeText(p => !p)
+                        }}
                     >
                         <Eye/>
                     </span>
@@ -177,15 +182,18 @@ const Login = () => {
                         </span>
                     ) : null}
                 </div>
-                <Link to="/reset-password" style={{marginTop: "2rem"}} className={styles["reset-password"]}>
+                <span
+                    onClick={() => handlePage(4)}
+                    style={{marginTop: "2rem", cursor: 'pointer'}}
+                    className={styles["reset-password"]}
+                >
                     Maxfiy so‘zni unutdingizmi?
-                </Link>
+                </span>
             </form>
             <div className={styles.buttons}>
                 <button onClick={handleSubmit(onSubmit)} data-name="submit" type="button">Davom etish</button>
-                <Link to="/register">
-                    <button type="button">Ro‘yatdan o‘tish</button>
-                </Link>
+                <button onClick={() => handlePage(1)} className={styles.register} type="button">Ro‘yatdan o‘tish
+                </button>
             </div>
         </section>
     );

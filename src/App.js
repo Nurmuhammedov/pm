@@ -1,14 +1,21 @@
-import React, {createContext} from "react";
+import React, {createContext, useEffect, useState} from "react";
 import Footer from "./components/footer/Footer";
 import Home from "./pages/home/Home";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
+import Tests from "./pages/tests/Tests";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+import SuccessIcon from "./assets/icons/alertIcons/SuccessIcon";
+import ErrorIcon from "./assets/icons/alertIcons/ErrorIcon";
+import AlertIcon from "./assets/icons/alertIcons/AlertIcon";
+import axios from "./axios";
 
 
 export const ctx = createContext(null);
 
 const selectOptions = [
     {value: "/", label: "Testlar"},
-    {value: "/all-tests", label: "Barcha testlar"},
+    {value: "/tests", label: "Barcha testlar"},
     {value: "/top-rated-tests", label: "Saralangan testlar"},
     {value: "/english-tests", label: "Ingliz tili"},
     {value: "/problematic-issues", label: "Muammoli masalalar"},
@@ -22,15 +29,85 @@ const dropdownOptions = [
 ];
 
 function App() {
+    const navigate = useNavigate()
+    const [user, setUser] = useState(null)
+    const [authModal, setAuthModal] = useState(false)
+
+    const handleAuthModal = (boolean) => {
+        setAuthModal(!!boolean)
+    }
+    const handleAuth = (data = false) => {
+        if (data) {
+            setUser(data)
+            localStorage.setItem("access_token", data.access)
+        } else {
+            setUser(null)
+            localStorage.clear()
+            navigate("/")
+        }
+    }
+
+    useEffect(() => {
+        axios.get("/v1/users/me/").then(() => {
+            setUser({access: localStorage.getItem("access_token")})
+        }).catch(error => {
+            handleAuth()
+            handleAlert("error", error?.response?.detail)
+        })
+    }, [])
+
+    const handleAlert = (type, massage, autoClose = 10000, close = true) => {
+        switch (type) {
+            case "success":
+                toast.success(massage, {
+                    icon: <SuccessIcon/>,
+                    progress: 0,
+                    autoClose: !autoClose ? false : autoClose,
+                    closeOnClick: close,
+                    draggable: close,
+                });
+                break;
+            case "error":
+                toast.error(massage, {
+                    icon: <ErrorIcon/>,
+                    progress: 0,
+                    autoClose: !autoClose ? false : autoClose,
+                });
+                break;
+            default:
+                toast.info(massage, {
+                    icon: <AlertIcon/>,
+                    autoClose: !autoClose ? false : autoClose,
+                });
+                break;
+        }
+    }
+
     return (
-        <ctx.Provider value={null}>
-            <main>
-                <Routes>
-                    <Route path="*" element={<Home dropdownOptions={dropdownOptions} selectOptions={selectOptions}/>} />
-                </Routes>
-            </main>
-            <Footer/>
-        </ctx.Provider>
+        <>
+            <ctx.Provider value={{user, handleAlert, handleAuth, handleAuthModal}}>
+                <main>
+                    <Routes>
+                        <Route path="/tests"
+                               element={
+                                   <Tests dropdownOptions={dropdownOptions} selectOptions={selectOptions}/>
+                               }
+                        />
+                        <Route path="*"
+                               element={
+                                   <Home
+                                       authModal={authModal}
+                                       dropdownOptions={dropdownOptions}
+                                       selectOptions={selectOptions}
+                                   />
+                               }
+                        />
+                    </Routes>
+                </main>
+                <Footer/>
+            </ctx.Provider>
+            <ToastContainer autoClose={10000} toastClassName="alert" bodyClassName="alert-inner"/>
+        </>
     );
 }
 

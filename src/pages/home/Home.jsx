@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import HomeHeader from "./homeHeader/HomeHeader";
 import HomeCarousel from "./homeCarousel/HomeCarousel";
 import HomeChannels from "./homeTelegramChannels/HomeChannels";
@@ -8,7 +8,7 @@ import ContactUs from "../../components/contactUs/ContactUs";
 import {useLocation} from "react-router-dom";
 import Auth from "../auth/Auth";
 
-const Home = ({dropdownOptions, selectOptions}) => {
+const Home = ({dropdownOptions, selectOptions, authModal}) => {
     return (
         <>
             <HomeHeader dropdownOptions={dropdownOptions} selectOptions={selectOptions}/>
@@ -17,7 +17,7 @@ const Home = ({dropdownOptions, selectOptions}) => {
             <HomeTests/>
             <HomeNews/>
             <ContactUs/>
-            <Auth/>
+            <Auth authModal={authModal}/>
         </>
     );
 };

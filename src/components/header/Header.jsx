@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import styles from "./Header.module.css";
 import ColoredLogo from "../../assets/icons/coloredLogo/ColoredLogo";
 import Logo from "../../assets/icons/logo/Logo";
@@ -8,6 +8,7 @@ import Select, {components} from "react-select";
 import Dropdown from "../../assets/icons/dropdown/Dropdown";
 import Button from "../UI/button/Button";
 import Account from "../../assets/icons/account/Account";
+import {ctx} from "../../App";
 
 const Header = (
     {
@@ -18,9 +19,18 @@ const Header = (
 ) => {
     const navigate = useNavigate();
     const {pathname} = useLocation()
+    const {user, handleAuthModal} = useContext(ctx)
     const handleDropdown = ({value}) => {
         navigate(value)
     };
+    const handleAuth = () => {
+        if (user) {
+            // ...
+        } else {
+            handleAuthModal(true)
+        }
+    };
+
     const DropdownIndicator = (props) => {
         return (
             <components.DropdownIndicator {...props}>
@@ -177,18 +187,17 @@ const Header = (
                     </ul>
                 </nav>
                 <div>
-                    <Link to="/login">
-                        <Button
-                            backgroundColor={!coloredLogo ? "#FFFFFF" : null}
-                            color={!coloredLogo ? "#0173FF" : "#415572"}
-                            fontFamily={!coloredLogo ? 'SourceSansPro-SemiBold", sans-serif' : 'Poppins-Medium", sans-serif'}
-                            fontSize="1.8rem"
-                            lineHeight="2rem"
-                            fontWeight={!coloredLogo ? "600" : "500"}
-                        >
-                            Login
-                        </Button>
-                    </Link>
+                    <Button
+                        backgroundColor={!coloredLogo ? "#FFFFFF" : null}
+                        color={!coloredLogo ? "#0173FF" : "#415572"}
+                        fontFamily={!coloredLogo ? 'SourceSansPro-SemiBold", sans-serif' : 'Poppins-Medium", sans-serif'}
+                        fontSize="1.8rem"
+                        lineHeight="2rem"
+                        fontWeight={!coloredLogo ? "600" : "500"}
+                        onClick={handleAuth}
+                    >
+                        {user ? "Chiqish" : "Kirish"}
+                    </Button>
                     <Link
                         to="/profile"
                         style={pathname === "/profile" ? {backgroundColor: "#0173FF"} : !coloredLogo ? {backgroundColor: "white"} : null}

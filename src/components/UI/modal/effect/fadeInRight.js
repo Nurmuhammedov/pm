@@ -6,7 +6,7 @@ export default {
         width: "100%",
         height: "100%",
         backgroundColor: "rgba(0, 0, 0, 0.6)",
-        zIndex: 10001,
+        zIndex: 21,
     },
     maskHidden: {
         display: "none",
@@ -20,7 +20,7 @@ export default {
         display: "flex",
         justifyContent: "end",
         alignItems: "center",
-        zIndex: 10000,
+        zIndex: 20,
     },
     containerHidden: {
         position: "fixed",
@@ -41,7 +41,7 @@ export default {
         transform: "translate3d(0, 0, 0)",
         transition:
             "transform 250ms cubic-bezier(0, 0, 0.25, 1), opacity 250ms cubic-bezier(0, 0, 0.25, 1)",
-        zIndex: 10002,
+        zIndex: 22,
     },
     panelHidden: {
         transform: "translate3d(100px, 0, 0)",

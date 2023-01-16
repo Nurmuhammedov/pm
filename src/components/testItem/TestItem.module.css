@@ -1,0 +1,93 @@
+.self {
+    background: white;
+    border-radius: 2.7rem;
+}
+
+.header {
+    position: relative;
+}
+
+.header .free-test {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.slide {
+    width: 100%;
+}
+
+.slide img {
+    width: 100%;
+    object-fit: cover;
+    height: 60rem;
+    aspect-ratio: 16/9;
+}
+
+.body {
+    padding: 1.6rem 2rem;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    gap: .4rem;
+    flex-direction: column;
+}
+
+.title div {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    color: #000000;
+}
+
+.title span,
+.title del {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    color: #0173FF;
+}
+
+.title del {
+    color: red;
+}
+
+.duration {
+    display: flex;
+    gap: .8rem;
+    align-items: center;
+}
+
+.duration span {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    letter-spacing: -0.06em;
+    color: #000000;
+}
+
+.footer {
+    margin-top: 2.4rem;
+
+}
+
+.count {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+}
