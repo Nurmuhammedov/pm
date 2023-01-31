@@ -50,3 +50,23 @@
     text-overflow: ellipsis;
 }
 
+
+.school-title {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 3rem;
+    color: #14161A;
+    margin-bottom: 2.4rem;
+}
+
+
+.school-desc {
+    font-family: 'Poppins-Medium', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.8rem;
+    line-height: 130%;
+    color: #14161A;
+}

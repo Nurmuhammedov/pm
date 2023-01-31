@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Autoplay} from "swiper";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {Swiper, SwiperSlide} from "swiper/react";
+import React, {useState} from 'react';
+import {Autoplay} from "swiper";
 import homeCarouselStyles from "../homeCarousel/HomeCarousel.module.css";
-import styles from "./HomeTests.module.css";
-import LeftArrow from "../../../assets/icons/arrows/LeftArrow";
+import carouselImg from "../../../assets/images/placeholderImage.jpg";
 import RightArrow from "../../../assets/icons/arrows/RightArrow";
-import carouselImg from "../../../assets/images/carousel.jpg";
-import "./HomeTestsCarousel.css"
+import LeftArrow from "../../../assets/icons/arrows/LeftArrow";
 import Button from "../../../components/UI/button/Button";
+import styles from "./HomeTests.module.css";
+import "./HomeTestsCarousel.css"
 
 const HomeTests = () => {
     const [swiper, setSwiper] = useState(null);
@@ -61,7 +62,6 @@ const HomeTests = () => {
                                         wrapperClassName={styles.slide}
                                         src={carouselImg}
                                         effect="blur"
-                                        placeholderSrc="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAUAB4DASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAUCAwYE/8QAKBAAAgEDBAEDBAMAAAAAAAAAAQIDEQQAIQUxEgYUUWETIkEVgaHx/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAIBA//EABkRAQADAQEAAAAAAAAAAAAAAAABEQJBMf/aAAwDAQACEQMRAD8A6rXdBJYSH6YkjiZXDdCrkc+1OD8ZlvIrY7j5FcNYI8gdo0Raakla0/rGcKypbSxwxyojgAIXLv140UfHvi2XcXS7l/XCrrMkizkinZQRoCOKGmuXcdSl4xGds31TdoVYQu1CB2BBIoP5GaHcdz6+nV0CAoz1Cszfca0NRT/MRrexy3sD3CMtx6coXBBVnqS3HvX4yd1NdXESTpDcMg+wOlWGn4oeDpi44Uh5rE22XkFpbzzGN0+oeza1OhpT8aZTbwxxwBVXQUAwwznpseKdzUekLAUaNqqRyNcdePxru2w9ZawrHNxCadjTkk1qdcMMYJf/2Q=="
                                     />
                                     <div className={styles.title}>
                                         Have you ever stopped to think abou

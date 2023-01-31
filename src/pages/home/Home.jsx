@@ -1,23 +1,63 @@
-import React from 'react';
-import HomeHeader from "./homeHeader/HomeHeader";
-import HomeCarousel from "./homeCarousel/HomeCarousel";
-import HomeChannels from "./homeTelegramChannels/HomeChannels";
-import HomeTests from "./homeTests/HomeTests";
-import HomeNews from "./homeNews/HomeNews";
+import React, {useContext, useEffect, useState} from 'react';
 import ContactUs from "../../components/contactUs/ContactUs";
-import {useLocation} from "react-router-dom";
-import Auth from "../auth/Auth";
+import HomeCarousel from "./homeCarousel/HomeCarousel";
+import HomeHeader from "./homeHeader/HomeHeader";
+import HomeNews from "./homeNews/HomeNews";
+import axios from "../../axios";
+import {ctx} from "../../App";
+import Loader from "../../components/loader/Loader";
 
-const Home = ({dropdownOptions, selectOptions, authModal}) => {
+
+const Home = () => {
+    const {handleAuth, handleAlert} = useContext(ctx)
+    const [data, setData] = useState({
+        user_count: 0,
+        test_subjects: [],
+        news: [],
+        schools: [{
+            title: "",
+            content: "",
+            images: [],
+            short_description: "",
+            students_count: 0,
+            subjects_count: 0,
+            teachers_count: 0,
+        }],
+        channels: [],
+        header_section: {
+            short_description: ""
+        }
+    })
+    const [isLoading, setIsLoading] = useState(true)
+    useEffect(() => {
+        axios.get('v1/core/home/').then(res => {
+            setData(res.data)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 0)
+        }).catch(error => {
+            if (error?.response?.status === 401) {
+                handleAuth()
+            } else {
+                handleAlert("error", error?.response?.data?.detail || "Tizimda nomaʼlum xatolik yuz berdi")
+            }
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 0)
+        })
+    }, [])
     return (
         <>
-            <HomeHeader dropdownOptions={dropdownOptions} selectOptions={selectOptions}/>
-            <HomeCarousel/>
-            <HomeChannels/>
-            <HomeTests/>
-            <HomeNews/>
-            <ContactUs/>
-            <Auth authModal={authModal}/>
+            {
+                isLoading ? <Loader/> : <>
+                    <HomeHeader headerSection={data.header_section}/>
+                    <HomeCarousel schools={data.schools} usersCount={data.user_count}/>
+                    {/*<HomeChannels channels={data.channels}/>*/}
+                    {/*<HomeTests/>*/}
+                    <HomeNews data={data.news}/>
+                    <ContactUs/>
+                </>
+            }
         </>
     );
 };

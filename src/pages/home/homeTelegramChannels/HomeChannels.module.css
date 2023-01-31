@@ -89,8 +89,3 @@
 .btn:hover .wrapper-inner div {
     color: #233F37;
 }
-
-/*.btn:hover [data-color] {*/
-/*color: attr(data-color);*/
-/*}*/
-

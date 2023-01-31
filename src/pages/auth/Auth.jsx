@@ -1,26 +1,29 @@
 import React, {useContext, useEffect, useState} from 'react';
-import Modal from "../../components/UI/modal";
-import Login from "../../components/login/Login";
-import Register from "../../components/register/Register";
 import VerifyingPhoneNumber from "../../components/verifyingPhoneNumber/VerifyingPhoneNumber";
 import ConfirmPassword from "../../components/confirmPassword/ConfirmPassword";
 import ResetPassword from "../../components/resetPassword/ResetPassword";
+import Register from "../../components/register/Register";
+import Login from "../../components/login/Login";
+import Modal from "../../components/UI/modal";
 import {ctx} from "../../App";
 
-const Auth = ({authModal}) => {
-    const {handleAuthModal} = useContext(ctx)
+const Auth = () => {
+    const {handleLoginModal} = useContext(ctx)
+    const [visible, setVisible] = useState(false)
     const [user, setUser] = useState(null)
     const [page, setPage] = useState(5)
 
     useEffect(() => {
-        if (authModal) {
-            document.querySelector("html").style.overflow = "hidden"
-            document.querySelector("body").style.marginRight = ".6rem"
-        } else {
-            document.querySelector("html").style.overflow = "auto"
-            document.querySelector("body").style.marginRight = "0"
+        setTimeout(() => {
+            setVisible(true)
+        }, 0)
+
+        return () => {
+            setTimeout(() => {
+                setVisible(false)
+            }, 0)
         }
-    }, [authModal])
+    }, [])
     const handleUser = (data) => {
         setUser(data)
     }
@@ -29,9 +32,9 @@ const Auth = ({authModal}) => {
     }
     return (
         <Modal
-            visible={authModal}
+            visible={visible}
             effect="fadeInRight"
-            onClick={() => handleAuthModal(false)}
+            onClick={() => handleLoginModal(false)}
         >
             {
                 page === 1 ? <Register handlePage={handlePage} handleUser={handleUser} user={user}/> :

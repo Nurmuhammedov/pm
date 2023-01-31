@@ -1,5 +1,5 @@
-import React from "react";
 import Select, {components} from "react-select";
+import React from "react";
 import SelectIcon from "../../../assets/icons/select/Select";
 
 const CustomSelect = ({
@@ -11,7 +11,10 @@ const CustomSelect = ({
                           lineHeight = "2rem",
                           color = "#415572",
                           handleValue,
-                          iconBackground
+                          iconBackground,
+                          defaultValue = "",
+                          label = "",
+                          value
                       }) => {
 
     const DropdownIndicator = (props) => {
@@ -30,8 +33,9 @@ const CustomSelect = ({
     };
     return (
         <Select
-            defaultValue={options[0]}
-            placeholder="Bo‘limi tanlang"
+            defaultValue={defaultValue ? defaultValue : false}
+            placeholder={label ? label : "Bo‘limi tanlang"}
+            value={value}
             options={options}
             components={{
                 NoOptionsMessage,

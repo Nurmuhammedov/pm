@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "http://192.168.5.13:8000/",
+    baseURL: "http://85.193.84.30/",
     withCredentials: true
 });
 
 instance.interceptors.request.use(config => {
-    if (localStorage.getItem("access_token")) {
-        config.headers["Authorization"] = "Bearer " + localStorage.getItem("access_token");
+    if (localStorage.getItem("accessToken")) {
+        config.headers["Authorization"] = "Bearer " + localStorage.getItem("accessToken");
     }
     return config;
 });

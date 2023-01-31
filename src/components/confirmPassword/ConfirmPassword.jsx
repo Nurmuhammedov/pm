@@ -1,15 +1,15 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {useForm} from "react-hook-form";
-import styles from "../login/Login.module.css";
-import {customTrim} from "../../utils/utils";
 import PasswordIcon from "../../assets/icons/loginIcons/Password";
 import Eye from "../../assets/icons/loginIcons/Eye";
+import loginStyles from "../login/Login.module.css";
+import styles from "../login/Login.module.css";
+import {customTrim} from "../../utils/utils";
+import {useForm} from "react-hook-form";
 import axios from "../../axios";
 import {ctx} from "../../App";
-import loginStyles from "../login/Login.module.css";
 
 const ConfirmPassword = ({handlePage, handleUser, user}) => {
-        const {handleAuthModal, handleAlert, handleAuth} = useContext(ctx)
+        const {handleLoginModal, handleAlert, handleAuth} = useContext(ctx)
         const [isPasswordInputTypeText, setIsPasswordInputTypeText] = useState(false);
         const [isConfirmPasswordInputTypeText, setIsConfirmPasswordInputTypeText] = useState(false);
         const {
@@ -24,7 +24,7 @@ const ConfirmPassword = ({handlePage, handleUser, user}) => {
                 pwd: "",
                 confirmPassword: ""
             },
-            mode: "onSubmit",
+            mode: "onTouched",
         });
 
         useEffect(() => {
@@ -48,9 +48,9 @@ const ConfirmPassword = ({handlePage, handleUser, user}) => {
                     password: data.pwd.trim(),
                     show_password: data.confirmPassword.trim()
                 }).then(() => {
-                    handleUser(null)
-                    handleAuthModal(false)
                     handleAlert("success", "Maxfiy so‘z muvaffaqiyatli o‘zgartirildi")
+                    handleLoginModal(false)
+                    handleUser(null)
                     handlePage(5)
                 }).catch(error => {
                     if (error.response.status === 401) {
@@ -67,8 +67,8 @@ const ConfirmPassword = ({handlePage, handleUser, user}) => {
                     password: data.pwd.trim(),
                     show_password: data.confirmPassword.trim()
                 }).then(() => {
-                    handleUser(null)
                     handleAlert("success", "Muvaffaqiyatli ro‘yhatdan o‘tdingiz")
+                    handleUser(null)
                     handlePage(5)
                 }).catch(error => {
                     if (error.response.status === 401) {
@@ -210,7 +210,7 @@ const ConfirmPassword = ({handlePage, handleUser, user}) => {
                     <button
                         className={loginStyles.register}
                         onClick={() => {
-                            handleAuthModal(false)
+                            handleLoginModal(false)
                             handlePage(5)
                         }}
                         type="button"

@@ -1,0 +1,276 @@
+.self {
+    padding: 3.6rem 0 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4rem;
+}
+
+.title {
+    font-family: 'Poppins-ExtraBold', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 4rem;
+    line-height: 150%;
+    color: #000000;
+    margin-bottom: .8rem;
+}
+
+.question-number {
+    font-family: 'Poppins-Medium', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.8rem;
+    line-height: 130%;
+    color: #000000;
+}
+
+
+.question {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+    color: #14161A;
+}
+
+.img {
+    overflow: hidden;
+    height: auto;
+    width: 100%;
+    display: flex !important;
+    justify-content: center;
+}
+
+.img img {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.navigation {
+    display: flex;
+    gap: .8rem;
+    flex-wrap: wrap;
+}
+
+.navigation > span {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    /*color: #22AE5F;*/
+    padding: .8rem 0;
+    aspect-ratio: 1/1;
+    background-color: #F3F2F3;
+    border-radius: 50%;
+    min-height: 4rem;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all .2s ease-out;
+}
+
+.navigation > span:hover {
+    background-color: #E3EEFC;
+    color: #0173FF;
+    border-color: #0139FF;
+}
+
+.variants {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .8rem 1rem;
+}
+
+.choice {
+    display: flex;
+    background: #F4F5F8;
+    border-radius: 1.2rem;
+    padding: .4rem;
+    align-items: center;
+    gap: .4rem;
+    transition: all .2s ease-out;
+    cursor: pointer;
+}
+
+.choice .label {
+    width: 4.7rem;
+    min-width: 4.7rem;
+    height: 100%;
+    min-height: 4.3rem;
+    border-radius: .8rem;
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 3rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.answer-text {
+    padding: .4rem;
+}
+
+.answer-text,
+.answer-text p,
+.answer-text * {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    transition: all .1s ease-out;
+    line-height: 2.5rem;
+}
+
+.choice:hover {
+    background-color: #0173FF;
+}
+
+.choice:hover .answer-text * {
+    color: white;
+}
+
+.active-button {
+    color: #0173FF !important;
+    border-color: #0139FF !important;
+    background-color: #E3EEFC !important;
+}
+
+.active-answer {
+    background-color: #0173FF !important;
+}
+
+.active-answer .answer-text * {
+    color: white !important;
+}
+
+.selected-button {
+    background-color: #E8FAED !important;
+    color: #22AE5F !important;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation-buttons > div {
+    display: flex;
+    gap: 1rem;
+}
+
+.navigation-buttons button {
+    display: flex;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #EBEBEB;
+    border-radius: 5rem;
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    color: #14161A;
+    gap: .5rem;
+    cursor: pointer;
+    transition: all .3s ease-out !important;
+}
+
+.navigation-buttons svg,
+.navigation-buttons svg path {
+    transition: all .2s ease-out !important;
+}
+
+.navigation-buttons button:hover {
+    background-color: #0173FF;
+    color: white;
+}
+
+.navigation-buttons > button {
+    font-family: "SourceSansPro-SemiBold", sans-serif;
+    font-weight: 600;
+}
+
+.navigation-buttons button:hover svg path {
+    fill: white;
+}
+
+.passive {
+    background-color: rgba(192, 192, 192, 0.3) !important;
+    color: silver !important;
+    cursor: not-allowed !important;
+}
+
+.passive path {
+    fill: silver !important;
+}
+
+.error-answer {
+    background: rgba(235, 55, 65, 0.1) !important;
+    color: #EB3741 !important;
+}
+
+.correct-answer-button {
+    background-color: #0FC341 !important;
+    color: white !important;
+}
+
+.error-answer-button {
+    background-color: #EB3741 !important;
+    color: white !important;
+}
+
+.timer {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+
+.answer-helper-text {
+    background-color: #F6F7F8;
+    flex: 1;
+}
+
+.answer-helper-text > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4rem;
+    padding: 1.6rem 0 3rem;
+}
+
+.answer-helper-text > div {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+    color: #14161A;
+}
+
+.answer-helper-text h3 {
+    font-family: 'Poppins-Medium', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 3.2rem;
+    line-height: 130%;
+    color: #000000;
+    margin-bottom: 1.6rem;
+}

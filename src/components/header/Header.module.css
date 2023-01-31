@@ -73,4 +73,59 @@ nav {
     align-items: center;
     cursor: pointer;
     transition: all .2s ease;
+    position: relative;
+}
+
+.account:hover {
+    background-color: #0173FF !important;
+}
+
+.account:hover > svg > path {
+    stroke: white !important;
+}
+
+.account-dropdown {
+    position: absolute;
+    width: 21rem;
+    background: #FFFFFF;
+    box-shadow: 0 .2rem 2rem rgba(0, 0, 0, 0.15);
+    border-radius: .4rem;
+    padding: .8rem 1.6rem;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    top: 110%;
+    right: 0;
+    gap: .4rem;
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .1s ease-out;
+}
+
+.account-dropdown span {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    color: #1D1B1B;
+}
+
+.account-dropdown > div,
+.account-dropdown > a {
+    padding: .8rem .8rem .8rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+    user-select: none;
+}
+
+.active-account {
+    opacity: 1;
+    visibility: visible;
 }

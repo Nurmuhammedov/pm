@@ -1,0 +1,9 @@
+.self {
+    padding: 1.6rem 0 6rem;
+}
+
+.news-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2.4rem;
+}

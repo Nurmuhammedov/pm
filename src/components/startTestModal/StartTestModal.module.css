@@ -1,0 +1,9 @@
+.desc {
+    max-width: 45rem;
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    text-align: center;
+}

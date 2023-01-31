@@ -16,6 +16,11 @@
 }
 
 @font-face {
+    src: url("assets/fonts/Poppins/Poppins-ExtraBold.ttf");
+    font-family: "Poppins-ExtraBold";
+}
+
+@font-face {
     src: url("assets/fonts/Poppins/Poppins-Black.ttf");
     font-family: "Poppins-Black";
 }
@@ -30,6 +35,11 @@
 @font-face {
     src: url("assets/fonts/SourceSansPro/SourceSansPro-SemiBold.ttf");
     font-family: "SourceSansPro-SemiBold";
+}
+
+@font-face {
+    src: url("assets/fonts/SourceSansPro/SourceSansPro-Bold.ttf");
+    font-family: "SourceSansPro-Bold";
 }
 
 @font-face {
@@ -53,6 +63,7 @@ html {
 *::-webkit-scrollbar {
     background-color: #DFDFDF;
     width: .6rem;
+    height: .6rem;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -73,11 +84,18 @@ a {
     outline: none;
 }
 
-#root {
+#root .app {
     display: flex;
     flex-direction: column;
     background-color: #F6F7F8;
     min-height: 100vh;
+}
+
+#root .app > main {
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
@@ -102,7 +120,6 @@ a {
 
 }
 
-
 .alert-inner .Toastify__toast-icon svg, .alert-inner .Toastify__toast-icon {
     width: 2.4rem !important;
     height: 2.4rem !important;
@@ -110,6 +127,10 @@ a {
 
 .alert-inner .Toastify__toast-icon {
     margin-right: 1.2rem !important;
+}
+
+.Toastify__progress-bar--info {
+    background: #E1842E !important;
 }
 
 .alert-inner > div:nth-child(2) {

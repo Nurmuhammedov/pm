@@ -1,35 +1,35 @@
-import React, {useContext} from "react";
-import styles from "./Header.module.css";
-import ColoredLogo from "../../assets/icons/coloredLogo/ColoredLogo";
-import Logo from "../../assets/icons/logo/Logo";
-import CustomSelect from "../UI/customSelect/CustomSelect";
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import Select, {components} from "react-select";
+import React, {useContext, useEffect, useState} from "react";
+import ColoredLogo from "../../assets/icons/coloredLogo/ColoredLogo";
 import Dropdown from "../../assets/icons/dropdown/Dropdown";
-import Button from "../UI/button/Button";
+import CustomSelect from "../UI/customSelect/CustomSelect";
 import Account from "../../assets/icons/account/Account";
+import Logo from "../../assets/icons/logo/Logo";
+import Select, {components} from "react-select";
+import styles from "./Header.module.css";
 import {ctx} from "../../App";
+import ProfileIcon from "../../assets/icons/logoutIcons/ProfileIcon";
+import LogoutIcon from "../../assets/icons/logoutIcons/LogoutIcon";
 
-const Header = (
-    {
-        coloredLogo = false,
-        selectOptions = [],
-        dropdownOptions = [],
-    }
-) => {
+const Header = ({coloredLogo = false, data, ratingId}) => {
     const navigate = useNavigate();
     const {pathname} = useLocation()
-    const {user, handleAuthModal} = useContext(ctx)
-    const handleDropdown = ({value}) => {
-        navigate(value)
-    };
-    const handleAuth = () => {
+    const {user, handleLoginModal, handleAuth} = useContext(ctx)
+    const [accountIsOpen, setAccountIsOpen] = useState(false)
+
+    useEffect(() => {
         if (user) {
-            // ...
-        } else {
-            handleAuthModal(true)
+            document.addEventListener(
+                "click",
+                function (event) {
+                    if (!event.target.closest(`#account-control-division`)) {
+                        setAccountIsOpen(false);
+                    }
+                },
+                false
+            );
         }
-    };
+    }, [user]);
 
     const DropdownIndicator = (props) => {
         return (
@@ -39,24 +39,42 @@ const Header = (
         );
     };
 
+    const NoOptionsMessage = (props) => {
+        return (
+            <components.NoOptionsMessage {...props}>
+                Hech narsa topilmadi
+            </components.NoOptionsMessage>
+        );
+    };
 
+
+    const handleLogout = () => {
+        handleAuth()
+        setTimeout(() => {
+            setAccountIsOpen(false)
+        }, 0)
+    }
     return (
-        <header style={{backgroundColor: coloredLogo ? "white" : "transparent"}}>
+        <header
+            style={{background: `${pathname.split("/")[1] === "premium-tests" || pathname.split("/")[1] === "free-tests" ? "#F6F7F8" : coloredLogo ? "white" : "#0139FF"}`}}>
             <div className={`${styles["header-inner"]} container`}>
                 <div>
-                        <span style={{maxHeight: "6rem", cursor: "pointer"}} onClick={() => navigate("/")}>
-                            {coloredLogo ? <ColoredLogo/> : <Logo/>}
-                        </span>
+                <span style={{maxHeight: "6rem", cursor: "pointer"}} onClick={() => navigate("/")}>
+            {coloredLogo ? <ColoredLogo/> : <Logo/>}
+                </span>
                     <CustomSelect
                         backgroundColor={
                             coloredLogo
                                 ? "rgba(65, 85, 114, 0.1)"
                                 : "#FFFFFF"
                         }
-                        handleValue={(value) => navigate(value)}
+                        value={data?.tests[0]}
+                        handleValue={(value) => navigate(`/tests/${value}`)}
                         color={coloredLogo ? "#415572" : "#0173FF"}
-                        options={selectOptions}
+                        options={data.tests.slice(1)}
+                        defaultValue={false}
                         iconBackground={coloredLogo ? "" : "#0173FF"}
+                        label="Bizning testlar" f
                     />
                 </div>
                 <nav>
@@ -67,38 +85,38 @@ const Header = (
                         </li>
                         <li>
                             <Link className={coloredLogo ? styles.coloredLogo : null}
-                                  style={!coloredLogo ? {color: "white"} : null} to="about-us">Biz haqimizda</Link>
+                                  style={!coloredLogo ? {color: "white"} : null} to="/about-us">Biz haqimizda</Link>
                         </li>
                         <li>
                             <Link className={coloredLogo ? styles.coloredLogo : null}
-                                  style={!coloredLogo ? {color: "white"} : null} to="news">Yangiliklar</Link>
+                                  style={!coloredLogo ? {color: "white"} : null} to="/all-news">Yangiliklar</Link>
                         </li>
                         <li>
                             <Link className={coloredLogo ? styles.coloredLogo : null}
-                                  style={!coloredLogo ? {color: "white"} : null} to="rating">Reyting</Link>
+                                  style={!coloredLogo ? {color: "white"} : null}
+                                  to="/rating/all">Reyting</Link>
                         </li>
                         <li>
                             <Select
-                                options={dropdownOptions.filter(
-                                    (item, index) => index !== 0
-                                )}
-                                value={dropdownOptions[0]}
-                                onChange={handleDropdown}
+                                options={data.channels.slice(1)}
+                                value={data.channels[0]}
+                                onChange={({value}) => navigate(`/channels/${value}`)}
                                 isSearchable={false}
                                 components={{
+                                    NoOptionsMessage,
                                     DropdownIndicator,
                                     IndicatorSeparator: () => null,
                                 }}
                                 styles={{
                                     control: (base) => ({
                                         ...base,
-                                        backgroundColor: "transparent",
+                                        backgroundColor: " transparent",
                                         border: 0,
                                         padding: "1.2rem 1.2rem 1.2rem 2.1rem",
                                         borderRadius: "323.2rem",
                                         boxShadow: "none",
                                         fontFamily:
-                                            "'SourceSansPro',  sans-serif",
+                                            "'SourceSansPro', sans-serif",
                                         fontStyle: "normal",
                                         fontWeight: "400",
                                         fontSize: "1.8rem",
@@ -135,6 +153,7 @@ const Header = (
                                     menu: (base) => ({
                                         ...base,
                                         margin: 0,
+                                        zIndex: "1000",
                                         top: "calc(100% + .2rem)",
                                         left: "2rem",
                                         background: "#FFFFFF",
@@ -145,10 +164,10 @@ const Header = (
                                         boxShadow:
                                             "rgba(149, 157, 165, 0.2) 0 .8rem 2.4rem",
                                     }),
-                                    menuList: (base) => ({
+                                    menuList: (base, state) => ({
                                         ...base,
-                                        padding: "1.6rem 0",
-                                        margin: 0,
+                                        padding: state.children?.length > 0 ? "1.6rem 0" : "0",
+                                        margin: 0
                                     }),
                                     option: (base, state) => ({
                                         ...base,
@@ -159,7 +178,6 @@ const Header = (
                                         fonWeight: "400",
                                         fontSize: "1.6rem",
                                         lineHeight: "2.5rem",
-                                        whiteSpace: "nowrap",
                                         color:
                                             state.isSelected || state.isFocused
                                                 ? "white"
@@ -187,26 +205,40 @@ const Header = (
                     </ul>
                 </nav>
                 <div>
-                    <Button
-                        backgroundColor={!coloredLogo ? "#FFFFFF" : null}
-                        color={!coloredLogo ? "#0173FF" : "#415572"}
-                        fontFamily={!coloredLogo ? 'SourceSansPro-SemiBold", sans-serif' : 'Poppins-Medium", sans-serif'}
-                        fontSize="1.8rem"
-                        lineHeight="2rem"
-                        fontWeight={!coloredLogo ? "600" : "500"}
-                        onClick={handleAuth}
-                    >
-                        {user ? "Chiqish" : "Kirish"}
-                    </Button>
-                    <Link
-                        to="/profile"
+                    <span
+                        onClick={() => {
+                            if (!user) {
+                                handleLoginModal(true)
+                            } else {
+                                setAccountIsOpen(true)
+                            }
+                        }}
                         style={pathname === "/profile" ? {backgroundColor: "#0173FF"} : !coloredLogo ? {backgroundColor: "white"} : null}
                         className={styles.account}
+                        id="account-control-division"
                     >
                         <Account
                             stroke={pathname === "/profile" ? "white" : !coloredLogo ? "#0173FF" : "#415572"}
                         />
-                    </Link>
+                        <div
+                            style={{cursor: "auto"}}
+                            className={`${styles["account-dropdown"]}  ${accountIsOpen ? styles["active-account"] : null}`}
+                            id="account"
+                        >
+                                <Link to="/profile" onClick={() => {
+                                    setTimeout(() => {
+                                        setAccountIsOpen(false)
+                                    }, 0)
+                                }}>
+                                    <ProfileIcon/>
+                                    <span>Shaxsiy kabinet</span>
+                                </Link>
+                                <div onClick={handleLogout} style={{marginTop: ".5rem"}}>
+                                    <LogoutIcon/>
+                                    <span>Tizimdan chiqish</span>
+                                </div>
+                            </div>
+                    </span>
                 </div>
             </div>
         </header>

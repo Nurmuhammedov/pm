@@ -10,7 +10,7 @@ import axios from "../../axios";
 import {ctx} from "../../App";
 
 const Login = ({handlePage}) => {
-    const {handleAlert, handleAuth, handleAuthModal} = useContext(ctx)
+    const {handleAlert, handleAuth, handleLoginModal} = useContext(ctx)
     const [isPasswordInputTypeText, setIsPasswordInputTypeText] = useState(false);
     const {
         handleSubmit,
@@ -23,7 +23,7 @@ const Login = ({handlePage}) => {
         defaultValues: {
             phone: "",
         },
-        mode: "onSubmit",
+        mode: "onTouched",
     });
 
     useEffect(() => {
@@ -41,18 +41,19 @@ const Login = ({handlePage}) => {
     };
     const onSubmit = (data) => {
         data.phone = data.phone.trim().split(" ").join("").slice(1).toLowerCase()
-        data.password = data.password.trim().toLowerCase()
+        data.password = data.password.trim()
         axios.post('/v1/login/', {...data}).then(r => {
-            handleAuth(r.data)
-            handleAuthModal(false)
-            reset()
+            localStorage.setItem("accessToken", r.data?.access)
+            handleAuth({balance: r.data?.balance})
             handleAlert("success", "Tizimga muvaffaqiyatli kirdingiz!")
+            handleLoginModal(false)
+            reset()
         }).catch(error => {
-            if (error.response.status === 401) {
+            if (error?.response?.status === 401) {
                 handleAuth()
             }
             reset()
-            handleAlert("error", "Telefon raqam yoki maxfiy so‘z xato!")
+            handleAlert("error", error?.response?.detail || "Telefon raqam yoki maxfiy so‘z xato!")
         })
     };
 
@@ -70,7 +71,8 @@ const Login = ({handlePage}) => {
             <form
                 onSubmit={e => {
                     e.preventDefault()
-                }}>
+                }}
+            >
                 <Controller
                     control={control}
                     name="phone"
@@ -86,11 +88,10 @@ const Login = ({handlePage}) => {
                         },
                     }}
                     render={({
-                                 field: {onChange, onBlur, value, ref},
+                                 field: {value, ref, ...rest},
                              }) => (
                         <InputMask
-                            onBlur={onBlur}
-                            onChange={onChange}
+                            {...rest}
                             value={value}
                             maskChar=""
                             alwaysShowMask={false}
@@ -192,7 +193,8 @@ const Login = ({handlePage}) => {
             </form>
             <div className={styles.buttons}>
                 <button onClick={handleSubmit(onSubmit)} data-name="submit" type="button">Davom etish</button>
-                <button onClick={() => handlePage(1)} className={styles.register} type="button">Ro‘yatdan o‘tish
+                <button onClick={() => handlePage(1)} className={styles.register} type="button">
+                    Ro‘yatdan o‘tish
                 </button>
             </div>
         </section>

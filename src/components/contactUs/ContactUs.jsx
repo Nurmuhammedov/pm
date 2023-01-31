@@ -1,14 +1,10 @@
-import React from 'react';
 import {useForm, Controller} from "react-hook-form";
 import InputMask from 'react-input-mask';
+import React from 'react';
 import homeChannelsStyles from "../../pages/home/homeTelegramChannels/HomeChannels.module.css";
-import backgroundImage from "../../assets/images/carousel.jpg"
-import styles from "./ContactUs.module.css";
+import backgroundImage from "../../assets/images/placeholderImage.jpg";
 import {customTrim} from "../../utils/utils";
-import FaceBook from "../../assets/icons/socialNetwoks/FaceBook";
-import Telegram from "../../assets/icons/socialNetwoks/Telegram";
-import YouTube from "../../assets/icons/socialNetwoks/YouTube";
-import Instagram from "../../assets/icons/socialNetwoks/Instagram";
+import styles from "./ContactUs.module.css";
 
 const ContactUs = () => {
     const {handleSubmit, register, reset, control, formState: {errors}} = useForm({
@@ -31,24 +27,6 @@ const ContactUs = () => {
         >
             <div className={styles.title}>
                 <h3>Savol va takliflaringiz bo‘lsa biz bilan bog‘laning</h3>
-                <div className={styles["social-networks"]}>
-                    <div>
-                        <span>
-                            <a href="https://www.google.com/" target="_blank" rel="noreferrer">
-                                <FaceBook/>
-                            </a>
-                            <a href="https://www.google.com/" target="_blank" rel="noreferrer">
-                                <Telegram/>
-                            </a>
-                            <a href="https://www.google.com/" target="_blank" rel="noreferrer">
-                                <YouTube/>
-                            </a>
-                            <a href="https://www.google.com/" target="_blank" rel="noreferrer">
-                                <Instagram/>
-                            </a>
-                        </span>
-                    </div>
-                </div>
             </div>
             <div>
                 <div className={styles["contact-us"]}>
@@ -65,93 +43,99 @@ const ContactUs = () => {
                         })}
                         className={styles["contact-us__form"]}
                     >
-                        <input
-                            {...register('firstName', {
-                                required: true,
-                                validate: {
-                                    whiteSpace: value => customTrim(value).length > 0,
-                                    minLength: value => customTrim(value).length >= 3,
-                                    maxLength: value => customTrim(value).length <= 50
-                                }
-                            })}
-                            type="text"
-                            placeholder="Ismingiz kiriting"
-                            style={errors?.firstName ? {borderColor: "red"} : null}
-                        />
-                        {errors?.firstName?.type === "required" ? <span>
+                        <div className={styles["form-container"]}>
+                            <input
+                                {...register('firstName', {
+                                    required: true,
+                                    validate: {
+                                        whiteSpace: value => customTrim(value).length > 0,
+                                        minLength: value => customTrim(value).length >= 3,
+                                        maxLength: value => customTrim(value).length <= 50
+                                    }
+                                })}
+                                type="text"
+                                placeholder="Ismingiz kiriting"
+                                style={errors?.firstName ? {borderColor: "red"} : null}
+                            />
+                            {errors?.firstName?.type === "required" ? <span>
                                 Ushbu maydon to‘ldirilishi shart
                             </span> : null}
-                        {errors?.firstName?.type === "whiteSpace" ? <span>
+                            {errors?.firstName?.type === "whiteSpace" ? <span>
                                 Bosh joy tashlash mumkin emas
                             </span> : null}
-                        {errors?.firstName?.type === "minLength" ? <span>
+                            {errors?.firstName?.type === "minLength" ? <span>
                                 Ismingiz kamida 3 ta belgidan iborat bo‘lishi kerak
                             </span> : null}
-                        {errors?.firstName?.type === "maxLength" ? <span>
+                            {errors?.firstName?.type === "maxLength" ? <span>
                                 Ismingiz 50 ta belgidan oshmasligi kerak
                             </span> : null}
-                        <Controller
-                            control={control}
-                            name="phone"
-                            rules={
-                                {
-                                    required: {value: true, message: "Ushbu maydon to‘ldirilishi shart"},
-                                    minLength: {
-                                        value: 17,
-                                        message: "Kiritilgan telefon raqam yaroqli emas"
-                                    },
+                        </div>
+                        <div className={styles["form-container"]}>
+                            <Controller
+                                control={control}
+                                name="phone"
+                                rules={
+                                    {
+                                        required: {value: true, message: "Ushbu maydon to‘ldirilishi shart"},
+                                        minLength: {
+                                            value: 17,
+                                            message: "Kiritilgan telefon raqam yaroqli emas"
+                                        },
+                                    }
                                 }
-                            }
-                            render={({field: {onChange, onBlur, value, ref}}) => <InputMask
-                                onBlur={onBlur}
-                                onChange={onChange}
-                                value={value}
-                                maskChar=""
-                                alwaysShowMask={false}
-                                mask="+\9\98 99 999 99 99"
-                                placeholder="Telefon raqamingiz"
-                            >
-                                {
-                                    inputProps => (
-                                        <input
-                                            {...inputProps}
-                                            ref={ref}
-                                            type="tel"
-                                            style={errors?.phone ? {borderColor: "red"} : null}
-                                        />
-                                    )
+                                render={({field: {onChange, onBlur, value, ref}}) => <InputMask
+                                    onBlur={onBlur}
+                                    onChange={onChange}
+                                    value={value}
+                                    maskChar=""
+                                    alwaysShowMask={false}
+                                    mask="+\9\98 99 999 99 99"
+                                    placeholder="Telefon raqamingiz"
+                                >
+                                    {
+                                        inputProps => (
+                                            <input
+                                                {...inputProps}
+                                                ref={ref}
+                                                type="tel"
+                                                style={errors?.phone ? {borderColor: "red"} : null}
+                                            />
+                                        )
+                                    }
+                                </InputMask>
                                 }
-                            </InputMask>
-                            }
-                        />
-                        {errors?.phone ? <span>
+                            />
+                            {errors?.phone ? <span>
                                {errors?.phone?.message}
                             </span> : null}
-                        <textarea
-                            {...register('comment', {
-                                required: true,
-                                validate: {
-                                    whiteSpace: value => customTrim(value).length > 0,
-                                    minLength: value => customTrim(value).length >= 5,
-                                    maxLength: value => customTrim(value).length <= 3000
-                                }
-                            })}
-                            rows={5}
-                            placeholder="Murojaatingiz izohi"
-                            style={errors?.comment ? {borderColor: "red"} : null}
-                        />
-                        {errors?.comment?.type === "required" ? <span>
+                        </div>
+                        <div className={styles["form-container"]}>
+                                <textarea
+                                    {...register('comment', {
+                                        required: true,
+                                        validate: {
+                                            whiteSpace: value => customTrim(value).length > 0,
+                                            minLength: value => customTrim(value).length >= 5,
+                                            maxLength: value => customTrim(value).length <= 3000
+                                        }
+                                    })}
+                                    rows={5}
+                                    placeholder="Murojaatingiz izohi"
+                                    style={errors?.comment ? {borderColor: "red"} : null}
+                                />
+                            {errors?.comment?.type === "required" ? <span>
                                 Ushbu maydon to‘ldirilishi shart
                             </span> : null}
-                        {errors?.comment?.type === "whiteSpace" ? <span>
+                            {errors?.comment?.type === "whiteSpace" ? <span>
                                 Bosh joy tashlash mumkin emas
                             </span> : null}
-                        {errors?.comment?.type === "minLength" ? <span>
+                            {errors?.comment?.type === "minLength" ? <span>
                                 Izoh kamida 5 ta belgidan iborat bo‘lishi kerak
                             </span> : null}
-                        {errors?.comment?.type === "maxLength" ? <span>
+                            {errors?.comment?.type === "maxLength" ? <span>
                                 Izoh 3000 ta belgidan oshmasligi kerak
                             </span> : null}
+                        </div>
                         <button type="submit">Men bilan aloqaga chiqing</button>
                     </form>
                 </div>

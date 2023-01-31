@@ -3,7 +3,8 @@
 }
 
 .self-inner {
-    background: linear-gradient(117.04deg, #0139FF 32.51%, #AD00FF 81.63%);
+    /*background: linear-gradient(117.04deg, #0139FF 32.51%, #AD00FF 81.63%);*/
+    background: #0139FF;
     padding-bottom: 28rem;
     border-bottom-left-radius: 100%;
     border-bottom-right-radius: 100%;

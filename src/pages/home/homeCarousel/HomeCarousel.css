@@ -19,3 +19,9 @@
 .home-carousel .swiper-pagination .swiper-pagination-bullet-active {
     background-color: #0139FF;
 }
+
+.about-us-carousel {
+    width: 100%;
+    border-radius: 3.2rem;
+    overflow: hidden;
+}

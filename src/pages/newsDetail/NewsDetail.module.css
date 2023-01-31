@@ -1,0 +1,42 @@
+.self {
+    padding: 2.5rem 0 3.2rem;
+    display: grid;
+    grid-template-columns: 1fr 40rem;
+    gap: 1.6rem;
+}
+
+.news-item {
+    padding: 2rem;
+    background: #FFFFFF;
+    border-radius: 1.2rem;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    border-radius: 1.2rem;
+}
+
+.slide{
+    margin-bottom: 2.4rem;
+}
+
+.title {
+    font-family: 'Poppins-Medium', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.4rem;
+    line-height: 3.6rem;
+    color: #000000;
+    margin-bottom: .4rem;
+}
+
+.content {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    color: #14161A;
+}

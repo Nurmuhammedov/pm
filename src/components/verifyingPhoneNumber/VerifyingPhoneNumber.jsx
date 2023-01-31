@@ -1,11 +1,10 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import loginStyles from "../login/Login.module.css";
 import {Controller, useForm} from "react-hook-form";
 import InputMask from "react-input-mask";
 import PasswordIcon from "../../assets/icons/loginIcons/Password";
-import {Link, useNavigate} from "react-router-dom";
-import styles from "./VerifyingPhoneNumber.module.css";
 import Phone from "../../assets/icons/loginIcons/Phone";
+import styles from "./VerifyingPhoneNumber.module.css";
+import loginStyles from "../login/Login.module.css";
 import axios from '../../axios'
 import {ctx} from "../../App";
 
@@ -23,7 +22,7 @@ const VerifyingPhoneNumber = ({user, handlePage}) => {
         defaultValues: {
             code: "",
         },
-        mode: "onSubmit",
+        mode: "onTouched",
     });
 
     useEffect(() => {
@@ -102,11 +101,10 @@ const VerifyingPhoneNumber = ({user, handlePage}) => {
                         },
                     }}
                     render={({
-                                 field: {onChange, onBlur, value, ref},
+                                 field: {value, ref, ...rest},
                              }) => (
                         <InputMask
-                            onBlur={onBlur}
-                            onChange={onChange}
+                            {...rest}
                             value={value}
                             maskChar=""
                             alwaysShowMask={false}

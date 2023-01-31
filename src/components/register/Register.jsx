@@ -1,10 +1,10 @@
 import React, {useContext, useEffect} from 'react';
-import loginStyles from "../login/Login.module.css"
-import {Controller, useForm} from "react-hook-form";
 import InputMask from "react-input-mask";
-import {customTrim} from "../../utils/utils";
+import {Controller, useForm} from "react-hook-form";
 import Phone from "../../assets/icons/loginIcons/Phone";
 import Login from "../../assets/icons/loginIcons/Login";
+import loginStyles from "../login/Login.module.css"
+import {customTrim} from "../../utils/utils";
 import axios from '../../axios'
 import {ctx} from "../../App";
 
@@ -21,7 +21,7 @@ const Register = ({handlePage, handleUser, user}) => {
         defaultValues: user?.resetPwd ? {
             phone: "",
         } : {...user},
-        mode: "onSubmit",
+        mode: "onTouched",
     });
 
     useEffect(() => {
@@ -178,11 +178,10 @@ const Register = ({handlePage, handleUser, user}) => {
                         },
                     }}
                     render={({
-                                 field: {onChange, onBlur, value, ref},
+                                 field: {value, ref, ...rest},
                              }) => (
                         <InputMask
-                            onBlur={onBlur}
-                            onChange={onChange}
+                            {...rest}
                             value={value}
                             maskChar=""
                             alwaysShowMask={false}

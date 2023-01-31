@@ -90,18 +90,7 @@
     padding: 1.2rem 1rem;
     border: 1px solid transparent;
     outline: none;
-    margin-top: 1rem;
-}
-
-.contact-us__form > span {
-    margin-top: .5rem;
-    display: inline-block;
-    font-family: 'SourceSansPro', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.2rem;
-    line-height: 1.5rem;
-    color: red;
+    margin-top: 3rem;
 }
 
 .contact-us__form textarea {
@@ -124,4 +113,22 @@
     text-align: center;
     width: 100%;
     cursor: pointer;
+}
+
+.form-container {
+    position: relative;
+}
+
+.form-container > span {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(calc(100% + .5rem));
+    margin-top: .5rem;
+    display: inline-block;
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    color: red;
 }

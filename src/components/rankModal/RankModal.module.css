@@ -1,0 +1,44 @@
+.stars {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.second-start {
+    transform: translateY(-2rem);
+}
+
+.rating {
+    font-family: 'Poppins-Bold', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 4.8rem;
+    line-height: 110%;
+    color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    margin-top: 1.6rem;
+}
+
+.rating span {
+    color: #0FC341;
+}
+
+.desc {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    text-align: center;
+    color: #14161A;
+    margin-top: 4rem;
+}
+
+.desc span {
+    color: #0173FF;
+}
+
+.active path {
+    fill: #FFD600 !important;
+}

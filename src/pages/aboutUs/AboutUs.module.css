@@ -1,0 +1,78 @@
+.self {
+    padding: 8rem 0 0;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 60rem;
+    gap: 2.4rem;
+    margin-bottom: 8rem;
+}
+
+.title {
+    font-family: 'Poppins-Medium', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 3.2rem;
+    line-height: 130%;
+    color: #14161A;
+    margin-bottom: .8rem;
+}
+
+.description {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 3rem;
+    color: rgba(20, 22, 26, 0.8);
+    margin-bottom: 2.4rem;
+}
+
+.content {
+    font-family: 'SourceSansPro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 156%;
+    color: rgba(20, 22, 26, 0.5);
+}
+
+.slide img {
+    aspect-ratio: 3/2;
+    object-fit: cover;
+    width: 100%;
+}
+
+.schools {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2.4rem;
+    margin-bottom: 11rem;
+}
+
+.students {
+    margin-bottom: 10rem;
+}
+
+.student {
+    position: relative;
+}
+
+.student-name {
+    font-family: 'Poppins-Medium', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 3.2rem;
+    line-height: 130%;
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    color: #FFFFFF;
+}
+
+.student-photo img {
+    aspect-ratio: 4/5;
+    width: 100%;
+    border-radius: 2.4rem;
+}

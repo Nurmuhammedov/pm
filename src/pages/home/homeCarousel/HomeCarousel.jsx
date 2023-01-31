@@ -1,31 +1,42 @@
-import React, {useState} from 'react';
-import {LazyLoadImage} from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import {Autoplay, Pagination} from "swiper";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Swiper, SwiperSlide} from "swiper/react";
+import {Autoplay, Pagination} from "swiper";
+import React, {useState} from 'react';
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css";
-import styles from './HomeCarousel.module.css'
-import LeftArrow from "../../../assets/icons/arrows/LeftArrow";
-import RightArrow from "../../../assets/icons/arrows/RightArrow";
-import carouselImg from '../../../assets/images/carousel.jpg'
 import CardIcon1 from "../../../assets/icons/cardItemsIcons/CardIcon1";
 import CardIcon2 from "../../../assets/icons/cardItemsIcons/CardIcon2";
 import CardIcon3 from "../../../assets/icons/cardItemsIcons/CardIcon3";
-import "./HomeCarousel.css"
 import CounterUp from "../../../components/UI/countUp/CounterUp";
+import RightArrow from "../../../assets/icons/arrows/RightArrow";
+import LeftArrow from "../../../assets/icons/arrows/LeftArrow";
+import styles from './HomeCarousel.module.css';
+import "./HomeCarousel.css";
 
-const HomeCarousel = () => {
+const HomeCarousel = ({schools, usersCount}) => {
     const [swiper, setSwiper] = useState(null);
-
+    const [activeData, setActiveData] = useState(schools[0])
+    const [activeDataIndex, setActiveDataIndex] = useState(0)
     const nextSlide = () => {
-        swiper.slideNext();
+        if (schools.length > activeDataIndex + 1) {
+            setActiveData(schools[activeDataIndex + 1])
+            setActiveDataIndex(p => p + 1)
+        } else {
+            setActiveDataIndex(0)
+            setActiveData(schools[0])
+        }
     };
     const prevSlide = () => {
-        swiper.slidePrev();
+        if (activeDataIndex >= 1) {
+            setActiveData(schools[activeDataIndex - 1])
+            setActiveDataIndex(p => p - 1)
+        } else {
+            setActiveDataIndex(schools.length - 1)
+            setActiveData(schools[schools.length - 1])
+        }
     };
-
     return (
         <section className={`${styles.self} container`}>
             <div className={styles.cards}>
@@ -41,11 +52,10 @@ const HomeCarousel = () => {
                 </div>
                 <div className={styles["card-item"]}>
                     <CardIcon3/>
-                    <h2>4000 foydalanuvchi</h2>
+                    <h2>{usersCount} foydalanuvchi</h2>
                     <p>Saytimiz prezident maktablariga tayyorlanayotgan barcha o‘quvchilar uchun mo‘ljallangan</p>
                 </div>
             </div>
-
             <div className={styles.carousel}>
                 <div className={styles.header}>
                     <div className={styles.title}>Prezident maktablari</div>
@@ -69,7 +79,7 @@ const HomeCarousel = () => {
                 <Swiper
                     className="home-carousel"
                     autoplay={{delay: 5000, disableOnInteraction: false}}
-                    // loop={true}
+                    loop={true}
                     grabCursor={true}
                     pagination={{
                         dynamicBullets: true,
@@ -81,14 +91,13 @@ const HomeCarousel = () => {
                     }}
                 >
                     {
-                        [{}, {},{}, {},{}, {},{}, {}].map((item, index) => {
+                        activeData.images.map((item, index) => {
                             return (
                                 <SwiperSlide key={index}>
                                     <LazyLoadImage
                                         wrapperClassName={styles.slide}
-                                        src={carouselImg}
+                                        src={item.image}
                                         effect="blur"
-                                        placeholderSrc="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAUAB4DASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAUCAwYE/8QAKBAAAgEDBAEDBAMAAAAAAAAAAQIDEQQAIQUxEgYUUWETIkEVgaHx/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAIBA//EABkRAQADAQEAAAAAAAAAAAAAAAABEQJBMf/aAAwDAQACEQMRAD8A6rXdBJYSH6YkjiZXDdCrkc+1OD8ZlvIrY7j5FcNYI8gdo0Raakla0/rGcKypbSxwxyojgAIXLv140UfHvi2XcXS7l/XCrrMkizkinZQRoCOKGmuXcdSl4xGds31TdoVYQu1CB2BBIoP5GaHcdz6+nV0CAoz1Cszfca0NRT/MRrexy3sD3CMtx6coXBBVnqS3HvX4yd1NdXESTpDcMg+wOlWGn4oeDpi44Uh5rE22XkFpbzzGN0+oeza1OhpT8aZTbwxxwBVXQUAwwznpseKdzUekLAUaNqqRyNcdePxru2w9ZawrHNxCadjTkk1qdcMMYJf/2Q=="
                                     />
                                 </SwiperSlide>
                             )
@@ -96,29 +105,28 @@ const HomeCarousel = () => {
                     }
                     <div className={styles.count}>
                         <div>
-                            <CounterUp className={styles["count-up"]} end={2211} duration={2} suffix="+"/>
-                            <div className={styles["count-up__label"]}>O‘quvchilar</div>
+                            <CounterUp className={styles["count-up"]} end={activeData.students_count} duration={2}
+                                       suffix="+"/>
+                            <div className={styles["count-up__label"]}>O‘quvchilariz</div>
                         </div>
                         <div>
-                            <CounterUp className={styles["count-up"]} end={150} duration={2} suffix="+"/>
-                            <div className={styles["count-up__label"]}>O‘qituvchilar</div>
+                            <CounterUp className={styles["count-up"]} end={activeData.teachers_count} duration={2}
+                                       suffix="+"/>
+                            <div className={styles["count-up__label"]}>O‘qituvchilariz</div>
                         </div>
                         <div>
-                            <CounterUp className={styles["count-up"]} end={76} duration={2} suffix="+"/>
+                            <CounterUp className={styles["count-up"]} end={activeData.subjects_count} duration={2}
+                                       suffix="+"/>
                             <div className={styles["count-up__label"]}>Fanlarimiz</div>
                         </div>
                     </div>
                 </Swiper>
                 <div className={styles.footer}>
                     <div>
-                        <div className={styles.title}>The Presidential School is</div>
-                        <p>a specialized public educational institution whose activities are aimed at identifying.</p>
+                        <div className={styles.title}>{activeData.title}</div>
+                        <p>{activeData.short_description}</p>
                     </div>
-                    <p>The Presidential School is a specialized state general educational institution whose activities
-                        are aimed at ensuring the identification and training of gifted children for the training of
-                        highly qualified specialists. Our goal is to train future leaders of the nation, students who
-                        will win international olympiads, competitions and be able to enter the best higher educational
-                        institutions in the world. We nurture leaders who can be competitive on the global stage."</p>
+                    <p dangerouslySetInnerHTML={{__html: activeData.content}}></p>
                 </div>
             </div>
         </section>

@@ -12,7 +12,6 @@ export default class Modal extends Component {
             style: style[effect],
         };
     }
-
     UNSAFE_componentWillReceiveProps({visible, effect = "fadeInDown"}) {
         this.setState({
             visible: visible,
@@ -69,34 +68,32 @@ export default class Modal extends Component {
 
     render() {
         return createPortal(
-            <div>
+            <div
+                style={
+                    this.state.visible
+                        ? this.state.style.container
+                        : this.state.style.containerHidden
+                }
+            >
                 <div
                     style={
                         this.state.visible
-                            ? this.state.style.container
-                            : this.state.style.containerHidden
+                            ? {...this.state.style.panel}
+                            : this.state.style.panelHidden
                     }
                 >
-                    <div
-                        style={
-                            this.state.visible
-                                ? {...this.state.style.panel}
-                                : this.state.style.panelHidden
-                        }
-                    >
-                        {this.props.children}
-                    </div>
-                    <div
-                        style={
-                            this.state.visible
-                                ? this.state.style.mask
-                                : this.state.style.maskHidden
-                        }
-                        onClick={this.props.onClick}
-                    />
+                    {this.props.children}
                 </div>
+                <div
+                    style={
+                        this.state.visible
+                            ? this.state.style.mask
+                            : this.state.style.maskHidden
+                    }
+                    onClick={this.props.onClick}
+                />
             </div>,
-            document.getElementById("modal")
+            document.querySelector("body")
         );
     }
 }

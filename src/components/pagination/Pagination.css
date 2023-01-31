@@ -1,0 +1,76 @@
+.pagination {
+  display: flex;
+  background-color: transparent;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.pagination::-webkit-scrollbar {
+  display: none;
+}
+.pagination .pagination__item {
+  user-select: none;
+  display: flex;
+}
+.pagination .pagination__item .page-item {
+  margin: 0 0.4rem;
+  list-style: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease-out;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+.pagination .pagination__item .page-item .page-link {
+  width: 3rem;
+  height: 3rem;
+  display: inline-block;
+  font-family: "SourceSansPro", sans-serif;
+  font-style: normal;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #000000;
+  line-height: 3rem;
+  transition: all 0.2s ease-out;
+  border-radius: 50%;
+}
+.pagination .pagination__item .page-item .page-link:hover {
+  color: white;
+  background-color: #0173FF;
+}
+.pagination .page-active .page-link {
+  color: white !important;
+  background-color: #0173FF;
+}
+.pagination .prev .page-link,
+.pagination .next .page-link {
+  min-width: 4.4rem;
+  min-height: 4.4rem;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+.pagination .prev .page-link svg path,
+.pagination .next .page-link svg path {
+  transition: all 0.3s ease-out !important;
+  stroke: black !important;
+}
+.pagination .prev .page-link:hover svg path,
+.pagination .next .page-link:hover svg path {
+  stroke: white !important;
+}
+.pagination .disabledBtn {
+  cursor: not-allowed !important;
+}
+.pagination .disabledBtn .page-link {
+  background-color: rgba(192, 192, 192, 0.5) !important;
+  pointer-events: none !important;
+}
+.pagination .disabledBtn .page-link svg path {
+  stroke: rgba(0, 0, 0, 0.5) !important;
+}
+
+/*# sourceMappingURL=Pagination.css.map */

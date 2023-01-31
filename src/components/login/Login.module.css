@@ -43,7 +43,7 @@
     position: relative;
 }
 
-.self > form > div > .icon {
+.icon {
     display: inline-block;
     position: absolute;
     top: 50%;
@@ -90,7 +90,7 @@
     text-overflow: ellipsis;
 }
 
-.self > form > div .helper-text {
+.helper-text {
     font-family: 'SourceSansPro', sans-serif;
     font-style: normal;
     font-weight: 400;

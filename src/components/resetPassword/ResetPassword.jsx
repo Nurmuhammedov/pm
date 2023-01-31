@@ -1,8 +1,8 @@
 import React, {useContext, useEffect} from 'react';
 import {Controller, useForm} from "react-hook-form";
-import loginStyles from "../login/Login.module.css";
 import InputMask from "react-input-mask";
 import Phone from "../../assets/icons/loginIcons/Phone";
+import loginStyles from "../login/Login.module.css";
 import axios from "../../axios";
 import {ctx} from "../../App";
 
@@ -18,7 +18,7 @@ const ResetPassword = ({handlePage, handleUser}) => {
         defaultValues: {
             phone: "",
         },
-        mode: "onSubmit",
+        mode: "onTouched",
     });
 
     useEffect(() => {
