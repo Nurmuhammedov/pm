@@ -68,7 +68,8 @@
     position: absolute;
     bottom: 3rem;
     left: 3rem;
-    color: #FFFFFF;
+    color: #F9CBAE;
+    -webkit-text-stroke: .1rem #E47E3F;
 }
 
 .student-photo img {
