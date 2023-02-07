@@ -10,7 +10,7 @@ import Loader from "../../components/loader/Loader";
 const Tests = ({tests = []}) => {
     const {id} = useParams()
     const navigate = useNavigate()
-    const {handleAuth, handleAlert} = useContext(ctx)
+    const {handleAuth, user,handleAlert} = useContext(ctx)
     const [selectedPage, setSelectedPage] = useState(1);
     const [refreshData, setRefreshData] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
@@ -50,7 +50,7 @@ const Tests = ({tests = []}) => {
                 setIsLoading(false)
             }, 0)
         })
-    }, [selectedPage, refreshData])
+    }, [selectedPage, refreshData, user])
 
     useEffect(() => {
         setTimeout(() => {
