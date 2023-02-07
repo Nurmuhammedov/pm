@@ -13,6 +13,7 @@ const ChannelModal = ({
                       }) => {
     const navigate = useNavigate()
     const [visible, setVisible] = useState(false)
+
     useEffect(() => {
         setTimeout(() => {
             setVisible(true)
@@ -21,9 +22,18 @@ const ChannelModal = ({
         return () => {
             setTimeout(() => {
                 setVisible(false)
+                document.querySelector("body").style.overflow = "auto"
             }, 0)
         }
     }, [])
+
+    useEffect(() => {
+        if (!visible) {
+            document.querySelector("body").style.overflow = "auto"
+        } else {
+            document.querySelector("body").style.overflow = "hidden"
+        }
+    }, [visible])
 
     return (
         <Modal visible={visible}

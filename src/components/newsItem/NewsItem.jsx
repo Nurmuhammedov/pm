@@ -3,7 +3,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Link} from "react-router-dom";
 import React from 'react';
 import styles from "./NewsItem.module.css";
-import img from "../../assets/images/defaultImage.jpg"
+import img from "../../assets/images/logo.jpg"
 
 const NewsItem = ({id, link, image, title, short_description, isNewsItem = true, school_title, student_count}) => {
     return (

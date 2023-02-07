@@ -1,7 +1,7 @@
 import "react-lazy-load-image-component/src/effects/blur.css";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import defaultImage from "../../assets/images/defaultImage.jpg";
+import defaultImage from "../../assets/images/logo.jpg";
 import styles from "./SolvingTest.module.css"
 import {useParams} from "react-router-dom";
 import axios from "../../axios";

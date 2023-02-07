@@ -30,6 +30,14 @@ const PurchaseTestModal = ({handleRefreshData, id, title, balance, price, handle
     });
 
     useEffect(() => {
+        if (!visible) {
+            document.querySelector("body").style.overflow = "auto"
+        } else {
+            document.querySelector("body").style.overflow = "hidden"
+        }
+    }, [visible])
+
+    useEffect(() => {
         setTimeout(() => {
             setVisible(true)
         }, 0)
@@ -37,6 +45,7 @@ const PurchaseTestModal = ({handleRefreshData, id, title, balance, price, handle
         return () => {
             setTimeout(() => {
                 setVisible(false)
+                document.querySelector("body").style.overflow = "auto"
             }, 0)
         }
     }, [])
@@ -117,7 +126,7 @@ const PurchaseTestModal = ({handleRefreshData, id, title, balance, price, handle
                     <div className={styles.icon}>
                         <BankIcon/>
                     </div>
-                    <div style={{width:"30rem"}} className={styles.sum}>
+                    <div style={{width: "30rem"}} className={styles.sum}>
                         {balance || 0} so‘m
                     </div>
                 </div>

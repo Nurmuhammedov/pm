@@ -19,7 +19,7 @@ const HomeTests = ({data = []}) => {
     return (
         <section style={{marginBottom: "10rem"}} className="container">
             <div className={homeCarouselStyles.header}>
-                <div className={homeCarouselStyles.title}>Biznig testlar</div>
+                <div className={homeCarouselStyles.title}>Bizning testlar</div>
                 <div className={homeCarouselStyles.buttons}>
                     <button onClick={prevSlide} className={homeCarouselStyles.btn}>
                         <div className={homeCarouselStyles["wrapper-left"]}>

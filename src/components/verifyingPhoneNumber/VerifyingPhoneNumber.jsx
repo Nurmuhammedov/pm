@@ -48,7 +48,19 @@ const VerifyingPhoneNumber = ({user, handlePage}) => {
     };
     const handleResendCode = () => {
         if (user && timer === 0) {
-            setTimer(180)
+            axios.post("/v1/users/send-sms-code/", {
+                phone: user.phone.trim().split(" ").join("").slice(1).toLowerCase()
+            }).then(() => {
+                handleAlert("success", "Ko‘rsatilgan telefon raqamiga tasdiqlash kodi qayta yuborildi")
+                reset()
+                setTimer(180)
+            }).catch(error => {
+                if (error.response.status === 401) {
+                    handleAuth()
+                }
+                handleAlert("error", error?.response?.data?.detail || "Tizimda nomaʼlum xatolik yuz berdi")
+                reset()
+            })
         }
     }
 

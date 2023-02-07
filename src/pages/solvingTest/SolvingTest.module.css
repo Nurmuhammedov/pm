@@ -41,13 +41,19 @@
     width: 100%;
     display: flex !important;
     justify-content: center;
-    min-height: 35rem;
+    min-height: 30rem;
+    width: -webkit-calc(100%);
+    width: -moz-calc(100%);
 }
 
 .img img {
     width: auto;
     height: 100%;
+    height: -webkit-calc(100%);
+    height: -moz-calc(100%);
     max-width: 100%;
+    max-width: -webkit-calc(100%);
+    max-width: -moz-calc(100%);
     object-fit: cover;
 }
 

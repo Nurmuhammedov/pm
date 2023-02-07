@@ -12,7 +12,7 @@ import Password from "../../assets/icons/loginIcons/Password";
 import BankIcon from "../../assets/icons/bankIcon/BankIcon";
 import PurchaseTestModal from "../../components/purchaseTestModal/PurchaseTestModal";
 import UpdateUserData from "../../components/updateUserData/UpdateUserData";
-import defaultImage from "../../assets/images/defaultImage.jpg"
+import defaultImage from "../../assets/images/logo.jpg"
 
 const Profile = () => {
     const {user, handleAuth, handleAlert} = useContext(ctx)

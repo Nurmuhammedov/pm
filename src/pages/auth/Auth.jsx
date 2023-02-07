@@ -21,9 +21,18 @@ const Auth = () => {
         return () => {
             setTimeout(() => {
                 setVisible(false)
+                document.querySelector("body").style.overflow = "auto"
             }, 0)
         }
     }, [])
+
+    useEffect(() => {
+        if (visible) {
+            document.querySelector("body").style.overflow = "hidden"
+        } else {
+            document.querySelector("body").style.overflow = "auto"
+        }
+    }, [visible])
     const handleUser = (data) => {
         setUser(data)
     }

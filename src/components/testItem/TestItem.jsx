@@ -3,7 +3,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import React, {useContext, useState} from 'react';
 import TestDurationIcon from "../../assets/icons/testDurationIcon/TestDurationIcon";
 import PurchaseTestModal from "../purchaseTestModal/PurchaseTestModal";
-import carouselImg from '../../assets/images/defaultImage.jpg'
+import carouselImg from '../../assets/images/logo.jpg'
 import StartTestModal from "../startTestModal/StartTestModal";
 import styles from "./TestItem.module.css"
 import {ctx} from "../../App";

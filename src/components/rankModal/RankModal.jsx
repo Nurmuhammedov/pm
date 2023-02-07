@@ -12,12 +12,21 @@ const RankModal = ({id, data, handleRankModal}) => {
     const [visible, setVisible] = useState(false)
 
     useEffect(() => {
+        if (visible) {
+            document.querySelector("body").style.overflow = "hidden"
+        } else {
+            document.querySelector("body").style.overflow = "auto"
+        }
+    }, [visible])
+
+    useEffect(() => {
         setTimeout(() => {
             setVisible(true)
         }, 0)
 
         return () => {
             setTimeout(() => {
+                document.querySelector("body").style.overflow = "auto"
                 setVisible(false)
             }, 0)
         }

@@ -19,6 +19,14 @@ const StartTestModal = ({
     const [visible, setVisible] = useState(false)
 
     useEffect(() => {
+        if (visible) {
+            document.querySelector("body").style.overflow = "hidden"
+        } else {
+            document.querySelector("body").style.overflow = "auto"
+        }
+    }, [visible])
+
+    useEffect(() => {
         setTimeout(() => {
             setVisible(true)
         }, 0)
@@ -26,9 +34,11 @@ const StartTestModal = ({
         return () => {
             setTimeout(() => {
                 setVisible(false)
+                document.querySelector("body").style.overflow = "auto"
             }, 0)
         }
     }, [])
+
 
     return (
         <Modal visible={visible}

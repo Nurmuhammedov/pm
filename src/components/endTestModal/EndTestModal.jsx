@@ -18,6 +18,7 @@ const EndTestModal = ({
     const [visible, setVisible] = useState(false)
     const [isSubmitButtonActive, setIsSubmitTestButtonActive] = useState(true)
 
+
     useEffect(() => {
         setTimeout(() => {
             setVisible(true)
@@ -26,9 +27,19 @@ const EndTestModal = ({
         return () => {
             setTimeout(() => {
                 setVisible(false)
+                document.querySelector("body").style.overflow = "auto"
             }, 0)
         }
     }, [])
+
+    useEffect(() => {
+        if (!visible) {
+            document.querySelector("body").style.overflow = "auto"
+        } else {
+            document.querySelector("body").style.overflow = "hidden"
+        }
+    }, [visible])
+
 
     const handleOnSubmit = () => {
         if (isSubmitButtonActive) {

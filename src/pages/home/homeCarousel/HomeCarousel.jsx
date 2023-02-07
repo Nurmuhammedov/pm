@@ -43,7 +43,7 @@ const HomeCarousel = ({schools, usersCount}) => {
                 <div className={styles["card-item"]}>
                     <CardIcon1/>
                     <h2>Bilim-Muvaffaqiyat</h2>
-                    <p>Biz bilan prezident maktalarining 7 yillik grantiga(112 000$ lik) ega
+                    <p>Biz bilan prezident maktablarining 7 yillik grantiga (112 000$ lik) ega
                         bo‘ling</p>
                 </div>
                 <div className={styles["card-item"]}>
