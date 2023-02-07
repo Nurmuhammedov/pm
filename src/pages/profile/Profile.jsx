@@ -204,7 +204,7 @@ const Profile = () => {
                                                 <th>Test nomi</th>
                                                 <th>Sana</th>
                                                 <th>Narxi</th>
-                                                <th>Ball</th>
+                                                <th><span style={{marginLeft: "1rem"}}>Ball</span></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -217,7 +217,10 @@ const Profile = () => {
                                                             <td>{test.test_time}</td>
                                                             <td>{test?.price ? `${test.price} so‘m` : "Bepul"}</td>
                                                             <td><span
-                                                                style={{color: "#0FC341"}}>{test.score}</span>/{test.questions_count}
+                                                                style={{
+                                                                    color: "#0FC341",
+                                                                    marginLeft: "1rem"
+                                                                }}>{test.score}</span>/{test.questions_count}
                                                             </td>
                                                         </tr>
                                                     )

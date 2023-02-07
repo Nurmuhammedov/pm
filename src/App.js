@@ -194,12 +194,19 @@ function App() {
                                 <News/>
                             }
                         />
-                        <Route
-                            path="*"
-                            element={
-                                <NotFound handleIsNotFound={b => setIsNotFound(b)}/>
-                            }
-                        />
+                        {
+                            user ? <Route
+                                path="*"
+                                element={
+                                    <NotFound handleIsNotFound={b => setIsNotFound(b)}/>
+                                }
+                            /> : <Route
+                                path="*"
+                                element={
+                                    <Home/>
+                                }
+                            />
+                        }
                     </Routes>
                 </main>
                 {

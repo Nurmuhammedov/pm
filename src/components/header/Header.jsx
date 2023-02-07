@@ -10,13 +10,16 @@ import styles from "./Header.module.css";
 import {ctx} from "../../App";
 import ProfileIcon from "../../assets/icons/logoutIcons/ProfileIcon";
 import LogoutIcon from "../../assets/icons/logoutIcons/LogoutIcon";
+import Burger from "../../assets/icons/burger/Burger";
+import {Accordion, AccordionButton, AccordionItem, AccordionPanel, Box} from "@chakra-ui/react";
+import "./Accordion.css"
 
 const Header = ({coloredLogo = false, data, ratingId}) => {
     const navigate = useNavigate();
     const {pathname} = useLocation()
     const {user, handleLoginModal, handleAuth} = useContext(ctx)
     const [accountIsOpen, setAccountIsOpen] = useState(false)
-
+    const [isMenuOPen, setIsMenuOpen] = useState(false);
     useEffect(() => {
         if (user) {
             document.addEventListener(
@@ -54,6 +57,10 @@ const Header = ({coloredLogo = false, data, ratingId}) => {
             setAccountIsOpen(false)
         }, 0)
     }
+
+    const menuToggle = () => {
+        setIsMenuOpen((p) => !p);
+    };
     return (
         <header
             style={{background: `${pathname.split("/")[1] === "premium-tests" || pathname.split("/")[1] === "free-tests" ? "#F6F7F8" : coloredLogo ? "white" : "#0139FF"}`}}>
@@ -153,14 +160,14 @@ const Header = ({coloredLogo = false, data, ratingId}) => {
                                     menu: (base) => ({
                                         ...base,
                                         margin: 0,
-                                        zIndex: "1000",
+                                        zIndex: "10000000",
                                         top: "calc(100% + .2rem)",
                                         left: "2rem",
                                         background: "#FFFFFF",
                                         borderRadius: "1.2rem",
                                         overflow: "hidden",
                                         minWidth: "calc(100% - 2rem)",
-                                        width: "auto",
+                                        // width: "auto",
                                         boxShadow:
                                             "rgba(149, 157, 165, 0.2) 0 .8rem 2.4rem",
                                     }),
@@ -197,13 +204,116 @@ const Header = ({coloredLogo = false, data, ratingId}) => {
                                         fontSize: "1.6rem",
                                         lineHeight: "2.5rem",
                                         cursor: "not-allowed",
-                                        whiteSpace: "nowrap",
                                     }),
                                 }}
                             />
                         </li>
                     </ul>
                 </nav>
+                <section
+                    className={`${styles.mobileMenu} ${
+                        isMenuOPen && styles.openMobileMenu
+                    }`}
+                >
+                    <div style={{position: "relative"}} className="container">
+                        <svg
+                            onClick={menuToggle}
+                            xmlns="http://www.w3.org/2000/svg"
+                            className={`${styles.mobileMenuIcon} ${
+                                !isMenuOPen &&
+                                styles.mobileMenuIconDisplayNone
+                            }`}
+                            fill="none"
+                            name="x-icon"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        </svg>
+                        <ul className={styles.mobile}>
+                            <li>
+                                <Link onClick={menuToggle} to="/">Asosiy</Link>
+                            </li>
+                            <li>
+                                <Link onClick={menuToggle} to="/about-us">Biz haqimizda</Link>
+                            </li>
+                            <li>
+                                <Link onClick={menuToggle} to="/all-news">Yangiliklar</Link>
+                            </li>
+                            <li>
+                                <Link onClick={menuToggle} to="/rating/all">Reyting</Link>
+                            </li>
+                            <li>
+                                <Accordion allowToggle>
+                                    <AccordionItem>
+                                        {({isExpanded}) => (
+                                            <>
+                                                <AccordionButton>
+                                                    <Box>
+                                                        <span
+                                                            style={
+                                                                isExpanded
+                                                                    ? {color: "#0065c1"}
+                                                                    : {}
+                                                            }
+                                                        >
+                                                            {data.channels[0].label}
+                                                        </span>
+                                                    </Box>
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        style={{
+                                                            transform: `${
+                                                                isExpanded
+                                                                    ? "rotate(-180deg)"
+                                                                    : "rotate(0)"
+                                                            }`,
+                                                        }}
+                                                        className={`${
+                                                            isExpanded && "chakraAccordionSvgOpen"
+                                                        }`}
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                                                        />
+                                                    </svg>
+                                                </AccordionButton>
+                                                <AccordionPanel>
+                                                    <ul>
+                                                        {
+                                                            data.channels.slice(1).map(channel => {
+                                                                return (
+                                                                    <li>
+                                                                        <Link
+                                                                            onClick={menuToggle}
+                                                                            to={`/channels/${channel.value}`}
+                                                                        >
+                                                                            {channel.label}
+                                                                        </Link>
+                                                                    </li>
+                                                                )
+                                                            })
+
+                                                        }
+                                                    </ul>
+                                                </AccordionPanel>
+                                            </>
+                                        )}
+                                    </AccordionItem>
+                                </Accordion>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
                 <div>
                     <span
                         onClick={() => {
@@ -238,6 +348,10 @@ const Header = ({coloredLogo = false, data, ratingId}) => {
                                     <span>Tizimdan chiqish</span>
                                 </div>
                             </div>
+                    </span>
+                    <span onClick={menuToggle}
+                          className={`${styles.burger} ${!coloredLogo ? styles["home-burger"] : null}`}>
+                        <Burger/>
                     </span>
                 </div>
             </div>

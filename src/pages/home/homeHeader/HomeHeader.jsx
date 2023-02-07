@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Button from "../../../components/UI/button/Button";
 import styles from './HomeHeader.module.css';
 import {ctx} from "../../../App";
@@ -16,14 +16,14 @@ const HomeHeader = ({headerSection}) => {
     return (
         <section className={styles.self}>
             <div className={styles["self-inner"]}>
-                <div className="container">
+                <div style={{maxWidth: "100vw"}} className="container">
                     <h1>
                         Siz qidirayotgan sifatli testlar<br/><span style={{color: "#FFF61B"}}>shu yerda</span>
                     </h1>
                     <p>
                         {headerSection.short_description}
                     </p>
-                    <div style={{display: 'flex', gap: ".8rem"}}>
+                    <div style={{display: 'flex', gap: ".8rem", flexWrap: "wrap"}}>
                         {
                             !user ? <Button
                                 onClick={() => handleLoginModal(true)}
@@ -35,7 +35,7 @@ const HomeHeader = ({headerSection}) => {
                                 color='#FFFFFF'
                                 backgroundColor="rgba(255, 255, 255, 0.1)"
                             >
-                                Ro‘yhatdan o‘tish
+                                Tizimga kirish
                             </Button> : null
                         }
                         {

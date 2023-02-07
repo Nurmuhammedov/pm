@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import styles from './HomeChannels.module.css'
+import ChannelModal from "../../../components/channelModal/ChannelModal";
 
 const HomeChannels = ({channels}) => {
-    const [data, setData] = useState([
+    const [modal, setModal] = useState(false)
+    const data = [
         {
             backgroundColor: "#989CFF",
             color: "#2B1755",
@@ -19,7 +21,8 @@ const HomeChannels = ({channels}) => {
             backgroundColor: "#644D83",
             color: "#3C255B",
         }
-    ])
+    ]
+
 
     return (
         <section className={`${styles.self} container`}>
@@ -39,20 +42,25 @@ const HomeChannels = ({channels}) => {
                                 <p style={{color: data[index].color}} className={styles.desc}>
                                     {item.short_description}
                                 </p>
-                                <button id="nextButtonRef" className={styles.btn}>
-                                    <div className={styles["wrapper-right"]}>
-                                        <div className={styles["wrapper-inner"]}>
-                                            <div data-color={data[index].color}
-                                                 className={styles["btn-label"]}>Batafsil
+                                <div style={{marginTop: "auto"}}>
+                                    <button onClick={() => setModal(item)} id="nextButtonRef" className={styles.btn}>
+                                        <div className={styles["wrapper-right"]}>
+                                            <div className={styles["wrapper-inner"]}>
+                                                <div data-color={data[index].color}
+                                                     className={styles["btn-label"]}>
+                                                    Batafsil
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </button>
+                                    </button>
+                                </div>
                             </div>
                         )
                     })
                 }
             </div>
+            {!!modal && <ChannelModal id={modal.id} handleStartTestModal={() => setModal(false)} title={modal.title}
+                                      link={modal.telegram_link}/>}
         </section>
     );
 };

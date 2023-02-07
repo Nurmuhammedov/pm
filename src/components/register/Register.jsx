@@ -50,7 +50,7 @@ const Register = ({handlePage, handleUser, user}) => {
         data.lastName = data.lastName.trim()
         handleUser({...data, resetPwd: false})
         data.phone = data.phone.trim().split(" ").join("").slice(1).toLowerCase()
-        axios.post("/v1/users/send-sms-code/", {
+        axios.post("/v1/users/send-sms-code/?register=True", {
             phone: data.phone
         }).then(() => {
             handlePage(2)
@@ -67,7 +67,7 @@ const Register = ({handlePage, handleUser, user}) => {
 
     return (
         <section className={loginStyles.self}>
-            <h3>Ro‘yatdan o‘tish</h3>
+            <h3>Ro‘yxatdan o‘tish</h3>
             <form
                 onSubmit={e => {
                     e.preventDefault()

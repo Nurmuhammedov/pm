@@ -18,7 +18,7 @@
     border-radius: 1.2rem;
 }
 
-.slide{
+.slide {
     margin-bottom: 2.4rem;
 }
 
@@ -39,4 +39,21 @@
     font-size: 1.6rem;
     line-height: 2.5rem;
     color: #14161A;
+}
+
+
+@media (max-width: 992px) {
+    .self {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .self {
+        grid-template-columns: 1fr;
+    }
+
+    .self {
+        padding: 1.6rem 1.5rem 6rem;
+    }
 }

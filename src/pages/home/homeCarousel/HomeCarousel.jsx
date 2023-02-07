@@ -42,8 +42,9 @@ const HomeCarousel = ({schools, usersCount}) => {
             <div className={styles.cards}>
                 <div className={styles["card-item"]}>
                     <CardIcon1/>
-                    <h2>Bilim-Muvoffaqiyat</h2>
-                    <p>Biz bilan prezident maktalarining 7 yillik grantiga(112 000$ lik) ega bo‘ling</p>
+                    <h2>Bilim-Muvaffaqiyat</h2>
+                    <p>Biz bilan prezident maktalarining 7 yillik grantiga(112 000$ lik) ega
+                        bo‘ling</p>
                 </div>
                 <div className={styles["card-item"]}>
                     <CardIcon2/>
@@ -58,7 +59,7 @@ const HomeCarousel = ({schools, usersCount}) => {
             </div>
             <div className={styles.carousel}>
                 <div className={styles.header}>
-                    <div className={styles.title}>Prezident maktablari</div>
+                    <div className={styles.title}>{activeData.title}</div>
                     <div className={styles.buttons}>
                         <button onClick={prevSlide} className={styles.btn}>
                             <div className={styles["wrapper-left"]}>
@@ -86,9 +87,6 @@ const HomeCarousel = ({schools, usersCount}) => {
                         clickable: true
                     }}
                     modules={[Autoplay, Pagination]}
-                    onSwiper={(s) => {
-                        setSwiper(s);
-                    }}
                 >
                     {
                         activeData.images.map((item, index) => {
@@ -107,17 +105,17 @@ const HomeCarousel = ({schools, usersCount}) => {
                         <div>
                             <CounterUp className={styles["count-up"]} end={activeData.students_count} duration={2}
                                        suffix="+"/>
-                            <div className={styles["count-up__label"]}>O‘quvchilariz</div>
+                            <div className={styles["count-up__label"]}>O‘quvchilar</div>
                         </div>
                         <div>
                             <CounterUp className={styles["count-up"]} end={activeData.teachers_count} duration={2}
                                        suffix="+"/>
-                            <div className={styles["count-up__label"]}>O‘qituvchilariz</div>
+                            <div className={styles["count-up__label"]}>O‘qituvchilar</div>
                         </div>
                         <div>
                             <CounterUp className={styles["count-up"]} end={activeData.subjects_count} duration={2}
                                        suffix="+"/>
-                            <div className={styles["count-up__label"]}>Fanlarimiz</div>
+                            <div className={styles["count-up__label"]}>Fanlar</div>
                         </div>
                     </div>
                 </Swiper>

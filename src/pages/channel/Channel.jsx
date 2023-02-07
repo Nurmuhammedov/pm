@@ -52,41 +52,44 @@ const Channel = () => {
         <>
             {
                 isLoading ? <Loader/> :
-                    <section className={`${styles.self} container`}>
-                        <div className={styles.header}>
-                            <div style={{display: "block"}}>
-                                <div className={styles.title}>{data.title}</div>
-                                <div className={styles.description}>{data.short_description}</div>
-                                <div className={styles.content} dangerouslySetInnerHTML={{__html: data.content}}></div>
+                    <>
+                        <section className={`${styles.self} container`}>
+                            <div className={styles.header}>
+                                <div style={{display: "block"}}>
+                                    <div className={styles.title}>{data.title}</div>
+                                    <div className={styles.description}>{data.short_description}</div>
+                                    <div className={styles.content}
+                                         dangerouslySetInnerHTML={{__html: data.content}}></div>
+                                </div>
+                                <Swiper
+                                    className="about-us-carousel"
+                                    autoplay={{delay: 5000, disableOnInteraction: false}}
+                                    loop={true}
+                                    grabCursor={true}
+                                    pagination={{
+                                        dynamicBullets: true,
+                                        clickable: true
+                                    }}
+                                    modules={[Autoplay, Pagination]}
+                                >
+                                    {
+                                        data.images.map(item => {
+                                            return (
+                                                <SwiperSlide key={item.id}>
+                                                    <LazyLoadImage
+                                                        wrapperClassName={styles.slide}
+                                                        src={item.image}
+                                                        effect="blur"
+                                                    />
+                                                </SwiperSlide>
+                                            )
+                                        })
+                                    }
+                                </Swiper>
                             </div>
-                            <Swiper
-                                className="about-us-carousel"
-                                autoplay={{delay: 5000, disableOnInteraction: false}}
-                                loop={true}
-                                grabCursor={true}
-                                pagination={{
-                                    dynamicBullets: true,
-                                    clickable: true
-                                }}
-                                modules={[Autoplay, Pagination]}
-                            >
-                                {
-                                    data.images.map(item => {
-                                        return (
-                                            <SwiperSlide key={item.id}>
-                                                <LazyLoadImage
-                                                    wrapperClassName={styles.slide}
-                                                    src={item.image}
-                                                    effect="blur"
-                                                />
-                                            </SwiperSlide>
-                                        )
-                                    })
-                                }
-                            </Swiper>
-                        </div>
+                        </section>
                         <ContactUs/>
-                    </section>
+                    </>
             }
         </>
     );

@@ -1,0 +1,79 @@
+/*.chakra-accordion {*/
+/*    padding-left: 1.6rem;*/
+/*}*/
+
+.chakra-accordion
+.chakra-accordion__item
+.chakra-collapse
+.chakra-accordion__panel {
+    padding-bottom: 0.8rem;
+    padding-left: 2rem;
+}
+
+.chakra-accordion .chakra-accordion__item .chakra-accordion__button {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    background-color: transparent;
+    padding: 1.6rem 0;
+    position: relative;
+    transition: border-bottom-color 0.1s ease-out;
+    cursor: pointer;
+    --chakraAccordionButton: #000000;
+    --chakraAccordionButtonSVG: black;
+}
+
+/*.chakra-accordion .chakra-accordion__item .chakra-accordion__button:after {*/
+/*    bottom: -1px;*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    content: "";*/
+/*    background-color: #0065c1;*/
+/*    height: 1px;*/
+/*    width: 0;*/
+/*    transition: width 0.5s ease-out;*/
+/*}*/
+
+.chakra-accordion .chakra-accordion__item .chakra-accordion__button:hover {
+    --chakraAccordionButton: #0065c1;
+    --chakraAccordionButtonSVG: #0065c1;
+}
+
+.chakra-accordion
+.chakra-accordion__item
+.chakra-accordion__button:hover::after {
+    width: 40px;
+}
+
+.chakra-accordion
+.chakra-accordion__item
+.chakra-accordion__button[aria-expanded="true"]:hover::after {
+    width: 0;
+}
+
+.chakra-accordion
+.chakra-accordion__item
+.chakra-accordion__button
+.css-0
+span {
+    font-family: "Mulish-Regular", sans-serif;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    color: var(--chakraAccordionButton);
+    text-decoration: none;
+    transition: all 0.3s ease-out;
+}
+
+.chakra-accordion__button svg {
+    width: 2.4rem;
+}
+
+.chakra-accordion .chakra-accordion__item .chakra-accordion__button svg {
+    margin: 0;
+    stroke: var(--chakraAccordionButtonSVG);
+    transition: all 0.3s ease-out;
+}
+
+.chakraAccordionSvgOpen {
+    stroke: #0065c1 !important;
+}

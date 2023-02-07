@@ -36,6 +36,7 @@
     font-size: 1.6rem;
     line-height: 156%;
     color: rgba(20, 22, 26, 0.5);
+    text-align: justify;
 }
 
 .slide img {
@@ -68,12 +69,29 @@
     position: absolute;
     bottom: 3rem;
     left: 3rem;
-    color: #F9CBAE;
-    -webkit-text-stroke: .1rem #E47E3F;
+    color: #7b94ee;
+    -webkit-text-stroke: .1rem #0139FF;
 }
 
 .student-photo img {
     aspect-ratio: 4/5;
     width: 100%;
     border-radius: 2.4rem;
+}
+
+
+@media (max-width: 992px) {
+    .header {
+        grid-template-columns: 1fr;
+    }
+
+    .schools {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .schools {
+        grid-template-columns: 1fr;
+    }
 }

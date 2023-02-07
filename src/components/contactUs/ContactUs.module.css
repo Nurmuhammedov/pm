@@ -132,3 +132,29 @@
     line-height: 1.5rem;
     color: red;
 }
+
+@media (max-width: 992px) {
+    .self {
+        grid-template-columns: 1fr;
+        background-image: none !important;
+        background: transparent;
+        padding: 0;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .contact-us {
+        width: 100%;
+        padding: 3rem 2rem;
+    }
+
+    .contact-us__title {
+        text-align: center;
+    }
+
+    .overlay {
+        display: none;
+    }
+}

@@ -50,10 +50,38 @@ const Tests = ({tests = []}) => {
                 setIsLoading(false)
             }, 0)
         })
-    }, [id, selectedPage, refreshData])
+    }, [selectedPage, refreshData])
 
     useEffect(() => {
-        setSelectedPage(1)
+        setTimeout(() => {
+            setSelectedPage(1)
+        }, 0)
+        axios.get(`/v1/tests/?subject_id=${id.toString() === "all" ? "" : id}&p=1&page_size=12`).then(res => {
+            setData(res?.data || {
+                results: [],
+                balance: null,
+                count: 0,
+                currentPage: 1,
+                page_size: 1,
+                totalPages: 1
+            })
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 0)
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        }).catch(error => {
+            if (error?.response?.status === 401) {
+                handleAuth()
+            } else {
+                handleAlert("error", error?.response?.data?.detail || "Tizimda nomaʼlum xatolik yuz berdi")
+            }
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 0)
+        })
     }, [id])
     const handlePageClick = ({selected}) => {
         setSelectedPage(selected + 1);

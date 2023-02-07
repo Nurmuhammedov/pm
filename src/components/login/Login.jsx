@@ -61,11 +61,11 @@ const Login = ({handlePage}) => {
         <section className={styles.self}>
             <h3>Tizimga kirish</h3>
             <p>
-                Tizimdan ro‘yhatdan o‘tmagan bo‘lsangiz <br/><span
+                Tizimdan ro‘yxatdan o‘tmagan bo‘lsangiz <br/><span
                 style={{color: "#0173FF", cursor: "pointer"}}
                 onClick={() => handlePage(1)}
             >
-                    “Ro‘yatdan o‘tish”
+                    “Ro‘yxatdan o‘tish”
                 </span> tugmasini bosing
             </p>
             <form
@@ -194,7 +194,7 @@ const Login = ({handlePage}) => {
             <div className={styles.buttons}>
                 <button onClick={handleSubmit(onSubmit)} data-name="submit" type="button">Davom etish</button>
                 <button onClick={() => handlePage(1)} className={styles.register} type="button">
-                    Ro‘yatdan o‘tish
+                    Ro‘yxatdan o‘tish
                 </button>
             </div>
         </section>

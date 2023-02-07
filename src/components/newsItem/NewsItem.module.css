@@ -2,6 +2,7 @@
     background-color: white;
     border-radius: 1.2rem;
     overflow: hidden;
+    display: inline-block;
 }
 
 .slide {

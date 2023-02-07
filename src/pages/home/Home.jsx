@@ -6,6 +6,8 @@ import HomeNews from "./homeNews/HomeNews";
 import axios from "../../axios";
 import {ctx} from "../../App";
 import Loader from "../../components/loader/Loader";
+import HomeChannels from "./homeTelegramChannels/HomeChannels";
+import HomeTests from "./homeTests/HomeTests";
 
 
 const Home = () => {
@@ -52,9 +54,14 @@ const Home = () => {
                 isLoading ? <Loader/> : <>
                     <HomeHeader headerSection={data.header_section}/>
                     <HomeCarousel schools={data.schools} usersCount={data.user_count}/>
-                    {/*<HomeChannels channels={data.channels}/>*/}
-                    {/*<HomeTests/>*/}
-                    <HomeNews data={data.news}/>
+                    <HomeChannels channels={data.channels}/>
+                    {
+                        data.test_subjects.length > 0 && <HomeTests data={data.test_subjects}/>
+                    }
+
+                    {
+                        data.news.length > 0 && <HomeNews data={data.news}/>
+                    }
                     <ContactUs/>
                 </>
             }

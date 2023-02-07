@@ -6,13 +6,16 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.4rem;
-    transform: translateY(-60%);
+    transform: translateY(-18rem);
 }
 
 .card-item {
     background-color: white;
     border-radius: 3.2rem;
     padding: 6rem 2.5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .card-item h2 {
@@ -33,6 +36,7 @@
     font-size: 1.6rem;
     line-height: 2.5rem;
     color: rgba(20, 22, 26, 0.6);
+    margin-top: auto !important;
 }
 
 .carousel {
@@ -123,6 +127,7 @@
 
 .footer {
     display: grid;
+    text-align: justify;
     gap: 2.4rem;
     grid-template-columns: 1fr 1fr;
 }
@@ -157,6 +162,7 @@
     z-index: 1;
     display: flex;
     gap: 4rem;
+    flex-direction: column;
 }
 
 .count-up {
@@ -177,4 +183,34 @@
     line-height: 2.5rem;
     color: #476ef6;
     -webkit-text-stroke: .05rem #0139FF;
+}
+
+
+@media (max-width: 992px) {
+    .cards {
+        grid-template-columns:  1fr;
+    }
+
+    .footer {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .header {
+        flex-direction: column;
+        gap: 2.4rem;
+        align-items: start;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
+    }
+
+    .count{
+        top: 4rem;
+    }
+    .slide img {
+        height: 40rem;
+    }
 }

@@ -65,96 +65,112 @@ const AboutUs = () => {
         <>
             {
                 isLoading ? <Loader/> :
-                    <section className={`${styles.self} container`}>
-                        <div className={styles.header}>
-                            <div>
-                                <div className={styles.title}>{data.title}</div>
-                                <div className={styles.description}>{data.short_description}</div>
-                                <div className={styles.content} dangerouslySetInnerHTML={{__html: data.content}}></div>
-                            </div>
-                            <Swiper
-                                className="about-us-carousel"
-                                autoplay={{delay: 5000, disableOnInteraction: false}}
-                                loop={true}
-                                grabCursor={true}
-                                pagination={{
-                                    dynamicBullets: true,
-                                    clickable: true
-                                }}
-                                modules={[Autoplay, Pagination]}
-                            >
-                                {
-                                    data.images.map(item => {
-                                        return (
-                                            <SwiperSlide key={item.id}>
-                                                <LazyLoadImage
-                                                    wrapperClassName={styles.slide}
-                                                    src={item.image}
-                                                    effect="blur"
-                                                />
-                                            </SwiperSlide>
-                                        )
-                                    })
-                                }
-                            </Swiper>
-                        </div>
-                        <div className={styles.schools}>
-                            {
-                                data.schools.map(school => <NewsItem isNewsItem={false} key={school.id} {...school}/>)
-                            }
-                        </div>
-                        <div className={styles.students}>
-                            <div style={{marginBottom: "3.5rem"}} className={homeCarouselStyles.header}>
-                                <div className={homeCarouselStyles.title}>Bizning o‘quvchilarimiz</div>
-                                <div className={homeCarouselStyles.buttons}>
-                                    <button onClick={prevSlide} className={homeCarouselStyles.btn}>
-                                        <div className={homeCarouselStyles["wrapper-left"]}>
-                                            <div className={homeCarouselStyles["wrapper-inner"]}>
-                                                <LeftArrow/>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <button onClick={nextSlide} id="nextButtonRef" className={homeCarouselStyles.btn}>
-                                        <div className={homeCarouselStyles["wrapper-right"]}>
-                                            <div className={homeCarouselStyles["wrapper-inner"]}>
-                                                <RightArrow/>
-                                            </div>
-                                        </div>
-                                    </button>
+                    <>
+                        <section className={`${styles.self} container`}>
+                            <div className={styles.header}>
+                                <div>
+                                    <div className={styles.title}>{data.title}</div>
+                                    <div className={styles.description}>{data.short_description}</div>
+                                    <div className={styles.content}
+                                         dangerouslySetInnerHTML={{__html: data.content}}></div>
                                 </div>
-                            </div>
-                            <Swiper
-                                className="home-tests__carousel"
-                                slidesPerView={3.2}
-                                autoplay={{delay: 5000, disableOnInteraction: false}}
-                                grabCursor={true}
-                                loop={true}
-                                spaceBetween={24}
-                                modules={[Autoplay]}
-                                onSwiper={(s) => {
-                                    setSwiper(s);
-                                }}
-                            >
-                                {
-                                    data.students.map(item => {
-                                        return (
-                                            <SwiperSlide key={item.id}>
-                                                <div className={styles.student}>
+                                <Swiper
+                                    className="about-us-carousel"
+                                    autoplay={{delay: 5000, disableOnInteraction: false}}
+                                    loop={true}
+                                    grabCursor={true}
+                                    pagination={{
+                                        dynamicBullets: true,
+                                        clickable: true
+                                    }}
+                                    modules={[Autoplay, Pagination]}
+                                >
+                                    {
+                                        data.images.map(item => {
+                                            return (
+                                                <SwiperSlide key={item.id}>
                                                     <LazyLoadImage
-                                                        wrapperClassName={styles["student-photo"]}
+                                                        wrapperClassName={styles.slide}
                                                         src={item.image}
                                                         effect="blur"
                                                     />
-                                                    <div className={styles["student-name"]}>{item["full_name"]}</div>
-                                                </div>
-                                            </SwiperSlide>
-                                        )
-                                    })
+                                                </SwiperSlide>
+                                            )
+                                        })
+                                    }
+                                </Swiper>
+                            </div>
+                            <div className={styles.schools}>
+                                {
+                                    data.schools.map(school => <NewsItem isNewsItem={false}
+                                                                         key={school.id} {...school}/>)
                                 }
-                            </Swiper>
-                        </div>
+                            </div>
+                            <div className={styles.students}>
+                                <div style={{marginBottom: "3.5rem"}} className={homeCarouselStyles.header}>
+                                    <div className={homeCarouselStyles.title}>Bizning o‘quvchilarimiz</div>
+                                    <div className={homeCarouselStyles.buttons}>
+                                        <button onClick={prevSlide} className={homeCarouselStyles.btn}>
+                                            <div className={homeCarouselStyles["wrapper-left"]}>
+                                                <div className={homeCarouselStyles["wrapper-inner"]}>
+                                                    <LeftArrow/>
+                                                </div>
+                                            </div>
+                                        </button>
+                                        <button onClick={nextSlide} id="nextButtonRef"
+                                                className={homeCarouselStyles.btn}>
+                                            <div className={homeCarouselStyles["wrapper-right"]}>
+                                                <div className={homeCarouselStyles["wrapper-inner"]}>
+                                                    <RightArrow/>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                                <Swiper
+                                    className="home-tests__carousel"
+                                    slidesPerView={1.2}
+                                    autoplay={{delay: 5000, disableOnInteraction: false}}
+                                    grabCursor={true}
+                                    loop={true}
+                                    spaceBetween={20}
+                                    modules={[Autoplay]}
+                                    onSwiper={(s) => {
+                                        setSwiper(s);
+                                    }}
+                                    breakpoints={{
+                                        768: {
+                                            slidesPerView: 2.2,
+                                            spaceBetween: 25,
+                                        },
+                                        1200: {
+                                            slidesPerView: 3.2,
+                                            spaceBetween: 30,
+                                        }
+                                    }}
+                                >
+                                    {
+                                        data.students.map(item => {
+                                            return (
+                                                <SwiperSlide key={item.id}>
+                                                    <div className={styles.student}>
+                                                        <LazyLoadImage
+                                                            wrapperClassName={styles["student-photo"]}
+                                                            src={item.image}
+                                                            effect="blur"
+                                                        />
+                                                        <div
+                                                            className={styles["student-name"]}>{item["full_name"]}</div>
+                                                    </div>
+                                                </SwiperSlide>
+                                            )
+                                        })
+                                    }
+                                </Swiper>
+                            </div>
+                        </section>
                         <ContactUs/>
-                    </section>
+                    </>
             }
         </>
     );

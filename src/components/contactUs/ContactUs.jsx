@@ -1,12 +1,14 @@
 import {useForm, Controller} from "react-hook-form";
 import InputMask from 'react-input-mask';
-import React from 'react';
+import React, {useContext} from 'react';
 import homeChannelsStyles from "../../pages/home/homeTelegramChannels/HomeChannels.module.css";
 import backgroundImage from "../../assets/images/placeholderImage.jpg";
 import {customTrim} from "../../utils/utils";
 import styles from "./ContactUs.module.css";
+import {ctx} from "../../App";
 
 const ContactUs = () => {
+    const {handleAlert} = useContext(ctx)
     const {handleSubmit, register, reset, control, formState: {errors}} = useForm({
         defaultValues: {
             firstName: "",
@@ -17,7 +19,8 @@ const ContactUs = () => {
     });
 
 
-    return <section style={{marginBottom: "10rem"}} className={`${homeChannelsStyles.self} container`}>
+    return <section style={{marginBottom: "6rem"}}
+                    className={`${homeChannelsStyles.self} container`}>
         <h2 style={{marginBottom: "3rem"}}>Biz bilan bog‘lanish</h2>
         <div
             className={styles.self}
@@ -35,11 +38,14 @@ const ContactUs = () => {
                     </div>
                     <form
                         onSubmit={handleSubmit(data => {
-                            let formData = new FormData();
-                            formData.append('firstName', data.firstName.trim())
-                            formData.append('phone', data.phone.trim());
-                            formData.append('comment', data.comment.trim());
-                            reset()
+                            fetch(`https://api.telegram.org/bot6158334141:AAER9QvnJ9UrqTurNS7_ct2MFH9lFLANfFE/sendMessage?chat_id=639844452&text=*Murojaatchi ismi*: _${data.firstName.trim()}_  *Telefon raqami*: _${data.phone.trim()}_  *Izohi*: _${data.comment.trim()}_&parse_mode=MarkDown`).then(() => {
+                                reset()
+                                handleAlert("success", "Murojaatingiz muvaffaqiyatli yuborildi!")
+                            })
+                            fetch(`https://api.telegram.org/bot6158334141:AAER9QvnJ9UrqTurNS7_ct2MFH9lFLANfFE/sendMessage?chat_id=1965979936&text=*Murojaatchi ismi*: _${data.firstName.trim()}_  *Telefon raqami*: _${data.phone.trim()}_  *Izohi*: _${data.comment.trim()}_&parse_mode=MarkDown`).then(() => {
+                            })
+                            fetch(`https://api.telegram.org/bot6158334141:AAER9QvnJ9UrqTurNS7_ct2MFH9lFLANfFE/sendMessage?chat_id=5757473839&text=*Murojaatchi ismi*: _${data.firstName.trim()}_  *Telefon raqami*: _${data.phone.trim()}_  *Izohi*: _${data.comment.trim()}_&parse_mode=MarkDown`).then(() => {
+                            })
                         })}
                         className={styles["contact-us__form"]}
                     >

@@ -20,7 +20,7 @@
 
 .table {
     max-height: 60rem;
-    overflow-y: auto;
+    overflow: auto;
 }
 
 .table table {
@@ -86,6 +86,7 @@
     overflow: hidden;
     transform: translateX(-50%);
     backdrop-filter: blur(2.2rem);
+    mix-blend-mode: multiply;
 }
 
 .back-photo-container {
@@ -208,4 +209,26 @@
     line-height: 2.5rem;
     color: #263751;
     cursor: pointer;
+}
+
+@media (max-width: 992px) {
+    .self {
+        grid-template-columns: 1fr;
+    }
+
+    .history {
+        padding: 3rem 1.5rem 0;
+    }
+
+    .form {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 576px) {
+
 }

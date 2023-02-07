@@ -7,3 +7,20 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2.4rem;
 }
+
+
+@media (max-width: 992px) {
+    .news-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .news-list {
+        grid-template-columns: 1fr;
+    }
+
+    .self {
+        padding: 1.6rem 1.5rem 6rem;
+    }
+}

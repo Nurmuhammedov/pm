@@ -356,7 +356,7 @@ const SolvingTest = ({freeTest, checkAnswers = false}) => {
                                     </div>
                             }
                             <div style={{display: "flex", justifyContent: "center"}}>
-                                <div>
+                                <div className={checkAnswers && styles['pc-navigation']}>
                                     {
                                         !checkAnswers ?
                                             <div className={styles.navigation}>
@@ -388,7 +388,8 @@ const SolvingTest = ({freeTest, checkAnswers = false}) => {
                                     }
                                 </div>
                             </div>
-                            <div className={styles["navigation-buttons"]}>
+                            <div
+                                className={`${checkAnswers && styles['pc-navigation']} ${styles["navigation-buttons"]}`}>
                                 <div>
                                     <button
                                         className={data.question.findIndex(answer => answer.id === activeQuestion.id) <= 0 ? styles.passive : null}
@@ -435,14 +436,14 @@ const SolvingTest = ({freeTest, checkAnswers = false}) => {
                             }
                         </section>
                         {
-                            checkAnswers && (activeQuestion?.solution || activeQuestion?.solution_imgae) ?
+                            checkAnswers ?
                                 <section className={styles["answer-helper-text"]}>
                                     <div className="container">
                                         <div>
                                             <h3>Savol yechimi:</h3>
                                             <p dangerouslySetInnerHTML={{__html: activeQuestion?.solution || ""}}></p>
                                         </div>
-                                        <div>
+                                        <div className={styles["img-container"]}>
                                             {
                                                 activeQuestion?.solution_image ?
                                                     <LazyLoadImage
@@ -453,6 +454,62 @@ const SolvingTest = ({freeTest, checkAnswers = false}) => {
                                                     /> : null
                                             }
                                         </div>
+                                    </div>
+                                    <div className={`${styles['mobile-navigation']} container`}>
+                                        {
+                                            !checkAnswers ?
+                                                <div className={styles.navigation}>
+                                                    {
+                                                        data.question.map((question) => {
+                                                            return <span
+                                                                className={activeQuestion?.id === question.id ? styles["active-button"] : answers.filter(answer => answer.id === question.id).length !== 0 ? styles["selected-button"] : null}
+                                                                onClick={() => handleChangeQuestion(question.id)}
+                                                                key={question?.id}
+                                                            >
+                                                        {question?.number}
+                                                    </span>
+                                                        })
+                                                    }
+                                                </div> :
+                                                <div className={styles.navigation}>
+                                                    {
+                                                        data.question.map((question) => {
+                                                            return <span
+                                                                className={activeQuestion?.id === question.id ? styles["active-button"] : question.user_answer === question.answer ? styles["correct-answer-button"] : question?.user_answer && question.user_answer !== question.answer ? styles['error-answer-button'] : styles["selected-button"]}
+                                                                onClick={() => handleChangeQuestion(question.id)}
+                                                                key={question?.id}
+                                                            >
+                                                        {question?.number}
+                                                    </span>
+                                                        })
+                                                    }
+                                                </div>
+                                        }
+                                    </div>
+                                    <div
+                                        className={`${styles['mobile-navigation']} ${styles["navigation-buttons"]} container`}>
+                                        <div>
+                                            <button
+                                                className={data.question.findIndex(answer => answer.id === activeQuestion.id) <= 0 ? styles.passive : null}
+                                                onClick={handlePreviousQuestion}
+                                            >
+                                                <PreviousIcon/>
+                                                <span style={{marginRight: ".3rem"}}>Avvalgi</span>
+                                            </button>
+                                            <button
+                                                className={data.question.findIndex(answer => answer.id === activeQuestion.id) === data.question.length - 1 ? styles.passive : null}
+                                                onClick={handleNextQuestion}
+                                            >
+                                                <span style={{marginLeft: ".3rem"}}>Keyingi</span>
+                                                <NextIcon/>
+                                            </button>
+                                        </div>
+                                        {
+                                            !checkAnswers &&
+                                            <button onClick={onSubmit}>
+                                                Testni yakunlash
+                                            </button>
+                                        }
                                     </div>
                                 </section> : null
                         }

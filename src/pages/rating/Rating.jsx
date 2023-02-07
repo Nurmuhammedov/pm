@@ -49,8 +49,39 @@ const Rating = ({tests}) => {
                 setIsLoading(false)
             }, 0)
         })
-    }, [id, selectedPage])
+    }, [selectedPage])
 
+    useEffect(() => {
+        setTimeout(() => {
+            setSelectedPage(1)
+        }, 0)
+        axios.get(`/v1/users/rating/?subject_id=${id.toString() === "all" ? "" : id}&p=1&page_size=10`).then(res => {
+            setData(res?.data || {
+                results: [],
+                index: null,
+                count: 0,
+                currentPage: 1,
+                page_size: 1,
+                totalPages: 1
+            })
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 0)
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        }).catch(error => {
+            if (error?.response?.status === 401) {
+                handleAuth()
+            } else {
+                handleAlert("error", error?.response?.data?.detail || "Tizimda nomaʼlum xatolik yuz berdi")
+            }
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 0)
+        })
+    }, [id])
     const handlePageClick = ({selected}) => {
         setSelectedPage(selected + 1);
     };
@@ -74,8 +105,10 @@ const Rating = ({tests}) => {
                             </div>
                             {
                                 !!user && !!data.index &&
-                                <div className={styles.rating}>
-                                    Siz {data.index} o‘rindasiz
+                                <div>
+                                    <div className={styles.rating}>
+                                        Siz {data.index} o‘rindasiz
+                                    </div>
                                 </div>
                             }
                         </div>

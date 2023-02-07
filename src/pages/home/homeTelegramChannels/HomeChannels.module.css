@@ -19,8 +19,10 @@
 }
 
 .channel {
-    padding: 8rem 6rem;
+    padding: 4rem 3rem;
     border-radius: 3.2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
@@ -88,4 +90,14 @@
 
 .btn:hover .wrapper-inner div {
     color: #233F37;
+}
+
+@media (max-width: 992px) {
+    .channels-container {
+        grid-template-columns: 1fr;
+    }
+
+    .title {
+        font-size: 3.5rem;
+    }
 }

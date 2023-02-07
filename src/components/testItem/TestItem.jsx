@@ -67,7 +67,7 @@ const TestItem = ({
                 />
                 {
                     user_test && user_test?.is_solution ? <div className={styles["free-test"]}>
-                        <span style={{color:"#0FC341"}}>{user_test.score}</span>/{questions_count}
+                        <span style={{color: "#0FC341"}}>{user_test.score}</span>/{questions_count}
                     </div> : null
                 }
             </div>

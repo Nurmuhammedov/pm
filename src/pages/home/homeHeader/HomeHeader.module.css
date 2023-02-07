@@ -3,7 +3,6 @@
 }
 
 .self-inner {
-    /*background: linear-gradient(117.04deg, #0139FF 32.51%, #AD00FF 81.63%);*/
     background: #0139FF;
     padding-bottom: 28rem;
     border-bottom-left-radius: 100%;
@@ -13,8 +12,8 @@
 }
 
 .self-inner > div {
-    padding-top: 5rem;
-    padding-left: 6rem;
+    padding-top: 5rem !important;
+    padding-left: 6rem !important;
 }
 
 .self h1 {
@@ -38,3 +37,12 @@
     margin-bottom: 3.3rem;
 }
 
+@media (max-width: 576px) {
+    .self h1 {
+        font-size: 4rem;
+    }
+
+    .self-inner > div {
+        padding-left: 3rem !important;
+    }
+}

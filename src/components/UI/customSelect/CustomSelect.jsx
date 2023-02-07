@@ -36,6 +36,7 @@ const CustomSelect = ({
             defaultValue={defaultValue ? defaultValue : false}
             placeholder={label ? label : "Bo‘limi tanlang"}
             value={value}
+            isSearchable={false}
             options={options}
             components={{
                 NoOptionsMessage,
@@ -92,11 +93,12 @@ const CustomSelect = ({
                     margin: 0,
                     top: "calc(100% + .2rem)",
                     left: "2rem",
+                    zIndex: "100000",
                     background: "#FFFFFF",
                     borderRadius: "1.2rem",
                     overflow: "hidden",
                     minWidth: "calc(100% - 2rem)",
-                    width: "auto",
+                    // width: "auto",
                     boxShadow: "rgba(149, 157, 165, 0.2) 0 .8rem 2.4rem",
                 }),
                 menuList: (base, state) => ({
@@ -112,7 +114,6 @@ const CustomSelect = ({
                     fonWeight: "400",
                     fontSize: "1.6rem",
                     lineHeight: "2.5rem",
-                    whiteSpace: "nowrap",
                     color:
                         state.isSelected || state.isFocused
                             ? "white"
@@ -131,7 +132,7 @@ const CustomSelect = ({
                     fontSize: "1.6rem",
                     lineHeight: "2.5rem",
                     cursor: "not-allowed",
-                    whiteSpace: "nowrap",
+                    // whiteSpace: "nowrap",
                 }),
             }}
         />

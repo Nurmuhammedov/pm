@@ -32,6 +32,7 @@
     font-size: 1.8rem;
     line-height: 2.8rem;
     color: #14161A;
+    text-align: justify;
 }
 
 .img {
@@ -40,6 +41,7 @@
     width: 100%;
     display: flex !important;
     justify-content: center;
+    min-height: 35rem;
 }
 
 .img img {
@@ -164,6 +166,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 1.6rem;
 }
 
 .navigation-buttons > div {
@@ -263,6 +267,7 @@
     font-size: 1.8rem;
     line-height: 2.8rem;
     color: #14161A;
+    text-align: justify;
 }
 
 .answer-helper-text h3 {
@@ -273,4 +278,41 @@
     line-height: 130%;
     color: #000000;
     margin-bottom: 1.6rem;
+}
+
+.img-container .img {
+    min-height: auto;
+}
+
+.mobile-navigation {
+    display: none !important;
+}
+
+.pc-navigation {
+    display: block !important;
+}
+
+@media (max-width: 992px) {
+    .self, .variants, .answer-helper-text > div {
+        grid-template-columns: 1fr;
+    }
+
+    .pc-navigation {
+        display: none !important;
+    }
+
+    .img {
+        min-height: auto;
+    }
+
+    .mobile-navigation {
+        display: block !important;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .schools {
+        grid-template-columns: 1fr;
+    }
 }
